@@ -1,84 +1,100 @@
-main > .container {
-    padding: 70px 15px 20px;
+@font-face {
+    font-family: "OpenSans-Regular";
+    src: url("../fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "OpenSans-Bold";
+    src: url("../fonts/OpenSans-Bold.ttf");
+}
+
+@font-face {
+    font-family: "OpenSans-SemiBold";
+    src: url("../fonts/OpenSans-SemiBold.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: OpenSans-Regular;
+}
+
+a {
+    text-decoration: none;
+    color: #38353B;
+}
+
+.container {
+    width: 1400px;
+    margin: 0 auto;
+}
+
+.index-img {
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
 }
 
 .footer {
-    background-color: #f5f5f5;
-    font-size: .9em;
-    height: 60px;
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    color: white;
+    font-size: 14px;
 }
 
-.footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
+.bg {
+    position: absolute;
+    width: 200px;
+    height: 70px;
+    z-index: -1;
+    bottom: -18px;
+    left: -40px;
+    background-color: black;
+    filter: blur(30px);
+    opacity: 40%;
 }
 
-.not-set {
-    color: #c55;
-    font-style: italic;
+.index {
+    position: relative;
+    top: 240px;
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
 }
 
-/* add sorting icons to gridview sort links */
-a.asc:after, a.desc:after {
-    content: '';
-    left: 3px;
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border: solid 5px transparent;
-    margin: 4px 4px 2px 4px;
-    background: transparent;
+.index > div:first-of-type > p {
+    width: 600px;
+    margin: 20px auto;
 }
 
-a.asc:after {
-    border-bottom: solid 7px #212529;
-    border-top-width: 0;
+.index > div:last-of-type {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 580px;
+    margin: 40px auto;
 }
 
-a.desc:after {
-    border-top: solid 7px #212529;
-    border-bottom-width: 0;
+.index > div:last-of-type > p {
+    margin: 0;
+    font-size: 14px;
 }
 
-.grid-view th {
-    white-space: nowrap;
+.button {
+    padding: 10px 50px;
+    border-radius: 10px;
+    background-color: #48B585;
 }
 
-.hint-block {
-    display: block;
-    margin-top: 5px;
-    color: #999;
-}
-
-.error-summary {
-    color: #a94442;
-    background: #fdf7f7;
-    border-left: 3px solid #eed3d7;
-    padding: 10px 20px;
-    margin: 0 0 15px 0;
-}
-
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding-top: 7px;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-@media(max-width:767px) {
-    .nav li > form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 0;
-    }
-}
-
-.nav > li > form > button.logout:focus,
-.nav > li > form > button.logout:hover {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.75);
-}
-
-.nav > li > form > button.logout:focus {
-    outline: none;
+.bg2 {
+    position: absolute;
+    height: 280px;
+    width: 106%;
+    background-color: black;
+    z-index: -1;
+    top: -40px;
+    left: -25px;
+    filter: blur(30px);
+    opacity: 40%;
 }
