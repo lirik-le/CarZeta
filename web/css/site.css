@@ -1,3 +1,4 @@
+/* шрифты */
 @font-face {
     font-family: "OpenSans-Regular";
     src: url("../fonts/OpenSans-Regular.ttf");
@@ -12,22 +13,60 @@
     font-family: "OpenSans-SemiBold";
     src: url("../fonts/OpenSans-SemiBold.ttf");
 }
-
+/* общие стили */
 * {
     padding: 0;
     margin: 0;
-    font-family: OpenSans-Regular;
+    font-family: OpenSans-Regular, serif;
+    color: #38353B;
 }
 
 a {
     text-decoration: none;
     color: #38353B;
+    transition: .15s linear;
 }
 
-.container {
-    width: 1400px;
-    margin: 0 auto;
+h1 {
+    font-family: OpenSans-Bold, serif;
 }
+
+a:hover{
+    color: #52d396;
+}
+
+
+.button-green {
+    color: white;
+    padding: 5px 70px;
+    border-radius: 10px;
+    background-color: #48B585;
+    border: 3px solid #48B585;
+    transition: .15s linear;
+}
+
+.button-green:hover {
+    background-color: rgb(243, 243, 243);
+    border: 3px solid #48B585;
+    color: #38353B;
+}
+
+/* шапка */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 15px 300px;
+    border-bottom: 3px solid #38353B;
+}
+
+header > div > a {
+    margin-left: 20px;
+}
+
+/* главная */
 
 .index-img {
     object-fit: cover;
@@ -42,6 +81,7 @@ a {
     color: white;
     font-size: 14px;
 }
+
 
 .bg {
     position: absolute;
@@ -81,10 +121,17 @@ a {
     font-size: 14px;
 }
 
-.button {
+.button-index {
     padding: 10px 50px;
     border-radius: 10px;
     background-color: #48B585;
+    border: 3px solid #48B585;
+    transition: .15s linear;
+}
+
+.button-index:hover {
+    padding: 10px 50px;
+    color: white;
 }
 
 .bg2 {
@@ -97,4 +144,34 @@ a {
     left: -25px;
     filter: blur(30px);
     opacity: 40%;
+}
+
+/* вход */
+
+.form-box {
+    margin: 180px 0;
+    text-align: center;
+}
+
+#login-form {
+    margin: 0 auto;
+}
+
+#login-form > div {
+    width: 20%;
+    margin: 30px auto !important;
+
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+    display: block;
+}
+
+.input-form {
+    border: none;
+    width: 100%;
+    border-bottom: 3px solid #38353B;
+    outline: none;
+    padding-left: 10px;
+    padding-bottom: 5px;
+
 }

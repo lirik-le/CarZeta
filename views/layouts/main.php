@@ -12,7 +12,6 @@ if (class_exists('yii\debug\Module')) {
 }
 
 AppAsset::register($this);
-
 $this->registerCsrfMetaTags();
 $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
 $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']);
@@ -24,8 +23,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
-<?php if (Yii::$app->request->url === '/CarZeta/site/index'): ?>
-    <img src="CarZeta/../../web/index-blur.jpg" class="index-img h-100 w-100" alt="Фон">
+<?php if (Yii::$app->request->url === "/CarZeta/site/index" or Yii::$app->request->url === "/CarZeta/"): ?>
+    <img src="<?= Yii::$app->homeUrl ?>/web/index-blur.jpg" class="index-img h-100 w-100">
 <?php endif ?>
 <head>
     <title><?= Html::encode($this->title) ?></title>
@@ -36,13 +35,17 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <?php $this->beginBody() ?>
 
 <header>
-    <?php if (Yii::$app->request->url === '/CarZeta/site/index'): ?>
-    <img src="CarZeta/../../web/carzeta-logo-dark.png" width="180px">
+    <?php if (Yii::$app->request->url === "/CarZeta/site/index" or Yii::$app->request->url === "/CarZeta/"): ?>
+        <a href="<?= Yii::$app->urlManager->createUrl('/') ?>">
+            <img src="<?= Yii::$app->homeUrl ?>/web/carzeta-logo-dark.png" width="180px">
+        </a>
     <?php else: ?>
-    <img src="CarZeta/../../web/carzeta-logo-light.png" width="180px">
-    <?php endif; ?>
+        <a href="<?= Yii::$app->urlManager->createUrl('/') ?>">
+            <img src="<?= Yii::$app->homeUrl ?>/web/carzeta-logo-light.png" width="180px">
+        </a>
+    <?php endif ?>
     <div>
-        <a href="">Войти</a>
+        <a href="<?= Yii::$app->urlManager->createUrl('site/login') ?>">Войти</a>
         <a href="">Зарегистрироваться</a>
     </div>
 </header>

@@ -6,22 +6,17 @@ $this->registerCss('
 * {
     color: white;
 }
+
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 1100px;
-    margin: 0 auto;
-    padding: 10px 0;
+    border-bottom: none;
 }
 
 a {
     color: white;
-    margin-left: 20px;
 }
 ');
 
-$this->title = 'My Yii Application';
+$this->title = 'CarZeta';
 ?>
 <div>
     <div class="index">
@@ -32,7 +27,7 @@ $this->title = 'My Yii Application';
                 Также можно получит статистику за выбранный период времении многое другое</p>
         </div>
         <div>
-            <a class="button" href="">Начать пользоваться</a>
+            <a class="button-index" href="">Начать пользоваться</a>
             <p>Простые шаги по регистрации</p>
         </div>
     </div>
