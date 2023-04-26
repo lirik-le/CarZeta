@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'fieldConfig' => [
             'template' => "{input}\n{error}",
             'inputOptions' => ['class' => 'input-form'],
-            'errorOptions' => ['class' => ''],
+            'errorOptions' => ['class' => 'qwe'],
         ],
     ]); ?>
 
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Пароль']) ?>
 
         <div class="form-group">
-            <div class="">
+            <div>
                 <?= Html::submitButton('Войти', ['class' => 'button-green', 'name' => 'login-button']) ?>
             </div>
         </div>

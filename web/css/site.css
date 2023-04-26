@@ -13,6 +13,7 @@
     font-family: "OpenSans-SemiBold";
     src: url("../fonts/OpenSans-SemiBold.ttf");
 }
+
 /* общие стили */
 * {
     padding: 0;
@@ -58,7 +59,7 @@ header {
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    padding: 15px 300px;
+    padding: 15px 320px;
     border-bottom: 3px solid #38353B;
 }
 
@@ -166,6 +167,14 @@ header > div > a {
     display: block;
 }
 
+#login-form > div > div {
+    text-align: left;
+}
+
+#login-form > div:last-of-type > div {
+    text-align: center;
+}
+
 .input-form {
     border: none;
     width: 100%;
@@ -173,5 +182,4 @@ header > div > a {
     outline: none;
     padding-left: 10px;
     padding-bottom: 5px;
-
 }
