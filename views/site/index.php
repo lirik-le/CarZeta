@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\Url;
+
 /** @var yii\web\View $this */
 
 $this->registerCss('
@@ -27,8 +29,13 @@ $this->title = 'CarZeta';
                 Также можно получит статистику за выбранный период времении многое другое</p>
         </div>
         <div>
-            <a class="button-index" href="">Начать пользоваться</a>
-            <p>Простые шаги по регистрации</p>
+            <?php if (Yii::$app->user->isGuest): ?>
+                <a class="button-index" href="<?= Url::to(['site/register']) ?>">Начать пользоваться</a>
+                <p>Простые шаги по регистрации</p>
+            <?php else: ?>
+                <a class="button-index" href="<?= Url::to(['user/profile']) ?>">Выбрать автомобиль</a>
+                <p>Простые шаги по добавлению записи</p>
+            <?php endif ?>
         </div>
     </div>
     <div class="footer"><div class="bg"></div>&#169; ООО "CarZeta"</div>

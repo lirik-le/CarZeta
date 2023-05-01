@@ -28,7 +28,7 @@ a {
     transition: .15s linear;
 }
 
-h1 {
+h1, h2, h3, h4 {
     font-family: OpenSans-Bold, serif;
 }
 
@@ -150,7 +150,7 @@ header > div > a {
 /* вход */
 
 .form-box {
-    margin: 180px 0;
+    margin: 130px 0;
     text-align: center;
 }
 
@@ -167,8 +167,9 @@ header > div > a {
     display: block;
 }
 
-#login-form > div > div {
+.input-error {
     text-align: left;
+    color: #c74e4e;
 }
 
 #login-form > div:last-of-type > div {
@@ -182,4 +183,59 @@ header > div > a {
     outline: none;
     padding-left: 10px;
     padding-bottom: 5px;
+}
+
+/* регистрация */
+
+#register-form > div{
+    width: 25%;
+    margin: 30px auto !important;
+
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+    display: block;
+}
+
+/* профиль */
+
+.profile {
+    display: flex;
+    padding-top: 130px;
+}
+
+.profile > div {
+    width: 50%;
+}
+
+.user {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.user > div::before {
+    content: '';
+    width: 126px;
+    height: 335px;
+    background-color: #48B585;
+    z-index: -1;
+    left: 63px;
+    position: relative;
+    border-radius: 10px;
+}
+
+.user > div > img {
+    margin-right: 40px;
+    border-radius: 10px;
+}
+
+.user > div > div > p {
+    margin-left: 15px;
 }

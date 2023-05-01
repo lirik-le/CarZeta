@@ -6,6 +6,7 @@
 
 use app\assets\AppAsset;
 use yii\bootstrap5\Html;
+use yii\helpers\Url;
 
 if (class_exists('yii\debug\Module')) {
     $this->off(\yii\web\View::EVENT_END_BODY, [\yii\debug\Module::getInstance(), 'renderToolbar']);
@@ -36,19 +37,20 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
 <header>
     <?php if (Yii::$app->request->url === "/CarZeta/site/index" or Yii::$app->request->url === "/CarZeta/"): ?>
-        <a href="<?= Yii::$app->urlManager->createUrl('/') ?>">
+        <a href="<?= Url::to(['/']) ?>">
             <img src="<?= Yii::$app->homeUrl ?>/web/carzeta-logo-dark.png" width="180px">
         </a>
     <?php else: ?>
-        <a href="<?= Yii::$app->urlManager->createUrl('/') ?>">
+        <a href="<?= Url::to(['/']) ?>">
             <img src="<?= Yii::$app->homeUrl ?>/web/carzeta-logo-light.png" width="180px">
         </a>
     <?php endif ?>
     <div>
         <?php if (Yii::$app->user->isGuest): ?>
-            <a href="<?= Yii::$app->urlManager->createUrl('site/login') ?>">Войти</a>
-            <a href="<?= Yii::$app->urlManager->createUrl('site/register') ?>">Зарегистрироваться</a>
+            <a href="<?= Url::to(['site/login']) ?>">Войти</a>
+            <a href="<?= Url::to(['site/register']) ?>">Зарегистрироваться</a>
         <?php else: ?>
+            <a href="<?= Url::to(['user/profile']) ?>">Профиль</a>
             <?= Html::a("Выход", ['site/logout'], [
                     'data' => [
                         'method' => 'post'

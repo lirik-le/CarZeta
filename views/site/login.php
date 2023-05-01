@@ -20,19 +20,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'fieldConfig' => [
             'template' => "{input}\n{error}",
             'inputOptions' => ['class' => 'input-form'],
-            'errorOptions' => ['class' => 'qwe'],
+            'errorOptions' => ['class' => 'input-error'],
         ],
     ]); ?>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder'=>'Логин']) ?>
+    <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder'=>'Логин']) ?>
 
-        <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Пароль']) ?>
+    <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Пароль']) ?>
 
-        <div class="form-group">
-            <div>
-                <?= Html::submitButton('Войти', ['class' => 'button-green', 'name' => 'login-button']) ?>
-            </div>
+    <div class="form-group">
+        <div>
+            <?= Html::submitButton('Войти', ['class' => 'button-green', 'name' => 'login-button']) ?>
         </div>
+    </div>
 
     <?php ActiveForm::end(); ?>
 
