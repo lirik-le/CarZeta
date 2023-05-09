@@ -50,7 +50,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             <a href="<?= Url::to(['site/login']) ?>">Войти</a>
             <a href="<?= Url::to(['site/register']) ?>">Зарегистрироваться</a>
         <?php else: ?>
-            <a href="<?= Url::to(['user/profile']) ?>">Профиль</a>
+            <?php if (!Yii::$app->user->identity->role): ?>
+                <a href="<?= Url::to(['user/profile']) ?>">Профиль</a>
+            <?php else: ?>
+                <a href="<?= Url::to(['user/index']) ?>">Пользователи</a>
+            <?php endif ?>
             <?= Html::a("Выход", ['site/logout'], [
                     'data' => [
                         'method' => 'post'

@@ -36,20 +36,52 @@ a:hover{
     color: #52d396;
 }
 
-
-.button-green {
+.button {
     color: white;
-    padding: 5px 70px;
+    width: 140px;
+    height: 38px;
     border-radius: 10px;
-    background-color: #48B585;
-    border: 3px solid #48B585;
+    border: 3px solid;
     transition: .15s linear;
 }
 
-.button-green:hover {
+.green {
+    background-color: #48B585;
+    border-color: #48B585;
+}
+
+.green:hover {
     background-color: rgb(243, 243, 243);
-    border: 3px solid #48B585;
     color: #38353B;
+}
+
+.gray {
+    background-color: #38353B;
+    border-color: #38353B;
+}
+
+.gray:hover {
+    background-color: rgb(243, 243, 243);
+    color: #38353B;
+}
+
+/* админка */
+
+.summary {
+    display: none;
+}
+
+.user-index, .user-view, .user {
+    width: 80%;
+    margin: 50px auto;
+}
+
+.user-index > h1 {
+    margin-bottom: 20px;
+}
+
+.table img {
+    width: 100px;
 }
 
 /* шапка */
@@ -123,16 +155,8 @@ header > div > a {
 }
 
 .button-index {
-    padding: 10px 50px;
-    border-radius: 10px;
     background-color: #48B585;
     border: 3px solid #48B585;
-    transition: .15s linear;
-}
-
-.button-index:hover {
-    padding: 10px 50px;
-    color: white;
 }
 
 .bg2 {
@@ -188,7 +212,7 @@ header > div > a {
 /* регистрация */
 
 #register-form > div{
-    width: 25%;
+    width: 22%;
     margin: 30px auto !important;
 
     --bs-gutter-x: 0;
@@ -200,27 +224,50 @@ header > div > a {
 
 .profile {
     display: flex;
-    padding-top: 130px;
+    justify-content: space-between;
+    padding-bottom: 30px;
 }
 
-.profile > div {
-    width: 50%;
+.profile::before {
+    content: '';
+    width: 58px;
+    height: 300px;
+    transform: rotate(16deg);
+    background-color: #48B585;
+    z-index: -1;
+    left: -30px;
+    bottom: 10px;
+    position: absolute;
+    border-radius: 10px;
 }
 
-.user {
-    width: 100%;
+.profile::after {
+    content: '';
+    width: 180px;
+    height: 90px;
+    background-color: #38353B;
+    z-index: -1;
+    left: 400px;
+    bottom: 0;
+    position: absolute;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
+.users {
+    width: 40%;
     display: flex;
+    align-items: flex-start;
     justify-content: center;
-    align-items: center;
+    padding-top: 50px;
 }
 
-.user > div {
+.users > div {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-.user > div::before {
+.users > div::before {
     content: '';
     width: 126px;
     height: 335px;
@@ -231,11 +278,56 @@ header > div > a {
     border-radius: 10px;
 }
 
-.user > div > img {
+.users > div > img {
     margin-right: 40px;
     border-radius: 10px;
 }
 
-.user > div > div > p {
-    margin-left: 15px;
+.users > div > div > p {
+    margin-left: 20px;
+}
+
+.cars {
+    padding-top: 80px;
+    width: 55%;
+}
+
+.cars > div {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 50px 0 0 0;
+}
+
+.cars > div > img {
+    margin-right: 40px;
+    border-radius: 10px;
+    object-fit:cover;
+}
+
+.cars > h1 {
+    font-family: OpenSans-Regular, serif;
+}
+
+/*.cars > div > div {*/
+/*    padding-top: 45px;*/
+/*}*/
+
+.cars > div > div > p {
+    margin-left: 20px;
+}
+
+.cars > div > div > div > a {
+    margin-right: 15px;
+}
+
+.cars > div::before {
+    content: '';
+    width: 106px;
+    height: 285px;
+    background-color: #38353B;
+    z-index: -1;
+    left: 53px;
+    position: relative;
+    border-radius: 10px;
 }

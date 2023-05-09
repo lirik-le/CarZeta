@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -6,8 +7,10 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\User */
 /* @var $form ActiveForm */
 ?>
+
 <div class="form-box">
     <h1>Регистрация</h1>
+
     <?php $form = ActiveForm::begin([
         'id' => 'register-form',
         'enableAjaxValidation' => true,
@@ -26,9 +29,10 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль']) ?>
     <?= $form->field($model, 'repeat_password')->passwordInput(['placeholder' => 'Повтор пароля']) ?>
     <?= $form->field($model, 'file', ['enableAjaxValidation' => false])->fileInput() ?>
-    <div class="form-group">
-        <?= Html::submitButton('Зарегистрироваться', ['class' => 'button-green']) ?>
-    </div>
-    <?php ActiveForm::end(); ?>
 
+    <div class="form-group">
+        <?= Html::submitButton('Зарегистрироваться', ['class' => 'button green', 'style' => 'width: 280px']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
 </div>

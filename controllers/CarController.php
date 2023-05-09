@@ -3,18 +3,15 @@
 namespace app\controllers;
 
 use app\models\Car;
-use app\models\User;
-use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
- * UserController implements the CRUD actions for User model.
+ * CarController implements the CRUD actions for Car model.
  */
-class UserController extends Controller
+class CarController extends Controller
 {
     /**
      * @inheritDoc
@@ -34,21 +31,15 @@ class UserController extends Controller
         );
     }
 
-    public function actionProfile()
-    {
-        $cars = Car::findAll(['user_id' => Yii::$app->user->identity->id]);
-        return $this->render('profile', ['cars' => $cars]);
-    }
-
     /**
-     * Lists all User models.
+     * Lists all Car models.
      *
      * @return string
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => User::find(),
+            'query' => Car::find(),
             /*
             'pagination' => [
                 'pageSize' => 50
@@ -67,7 +58,7 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a single User model.
+     * Displays a single Car model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -80,7 +71,29 @@ class UserController extends Controller
     }
 
     /**
-     * Updates an existing User model.
+     * Creates a new Car model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return string|\yii\web\Response
+     */
+    public function actionCreate()
+    {
+        $model = new Car();
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Updates an existing Car model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -89,20 +102,9 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->role = 0;
 
-        if ($model->load($this->request->post())) {
-
-            $model->file = UploadedFile::getInstance($model, 'file');
-            $uploadedFileName = $model->upload();
-            $model->avatar = $uploadedFileName;
-
-            if ($model->validate()) {
-                $model->save(false);
-                return $this->goHome();
-            }
-//            $model->save(false);
-//            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -111,7 +113,7 @@ class UserController extends Controller
     }
 
     /**
-     * Deletes an existing User model.
+     * Deletes an existing Car model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -121,22 +123,19 @@ class UserController extends Controller
     {
         $this->findModel($id)->delete();
 
-        Yii::$app->session
-            ->setFlash('success', 'Вы удалили профиль!');
-
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the User model based on its primary key value.
+     * Finds the Car model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return User the loaded model
+     * @return Car the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne(['id' => $id])) !== null) {
+        if (($model = Car::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

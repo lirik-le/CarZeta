@@ -136,7 +136,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getCars()
     {
-        return $this->hasMany(Cars::class, ['user_id' => 'id']);
+        return $this->hasMany(Car::class, ['user_id' => 'id']);
     }
 
     /**

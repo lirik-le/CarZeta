@@ -30,10 +30,10 @@ $this->title = 'CarZeta';
         </div>
         <div>
             <?php if (Yii::$app->user->isGuest): ?>
-                <a class="button-index" href="<?= Url::to(['site/register']) ?>">Начать пользоваться</a>
+                <a href="<?= Url::to(['site/register']) ?>"><button class="button button-index" style="width: 272px; height: 44px">Начать пользоваться</button></a>
                 <p>Простые шаги по регистрации</p>
             <?php else: ?>
-                <a class="button-index" href="<?= Url::to(['user/profile']) ?>">Выбрать автомобиль</a>
+                <a href="<?= Url::to(['user/profile']) ?>"><button class="button button-index" style="width: 272px; height: 44px">Выбрать автомобиль</button></a>
                 <p>Простые шаги по добавлению записи</p>
             <?php endif ?>
         </div>
