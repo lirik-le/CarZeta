@@ -2,18 +2,16 @@
 
 namespace app\controllers;
 
-use app\models\Car;
-use Yii;
+use app\models\Refills;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
- * CarController implements the CRUD actions for Car model.
+ * RefillsController implements the CRUD actions for Refills model.
  */
-class CarController extends Controller
+class RefillsController extends Controller
 {
     /**
      * @inheritDoc
@@ -34,14 +32,14 @@ class CarController extends Controller
     }
 
     /**
-     * Lists all Car models.
+     * Lists all Refills models.
      *
      * @return string
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Car::find(),
+            'query' => Refills::find(),
             /*
             'pagination' => [
                 'pageSize' => 50
@@ -60,7 +58,7 @@ class CarController extends Controller
     }
 
     /**
-     * Displays a single Car model.
+     * Displays a single Refills model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -73,21 +71,17 @@ class CarController extends Controller
     }
 
     /**
-     * Creates a new Car model.
+     * Creates a new Refills model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Car();
-        $model->file = UploadedFile::getInstance($model, 'file');
+        $model = new Refills();
 
         if ($this->request->isPost) {
-            $model->user_id = Yii::$app->user->identity->id;
-            $model->photo = $model->upload();
-
-            if ($model->load($this->request->post()) && $model->save(false)) {
-                return $this->redirect(['user/profile']);
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -99,7 +93,7 @@ class CarController extends Controller
     }
 
     /**
-     * Updates an existing Car model.
+     * Updates an existing Refills model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -109,11 +103,8 @@ class CarController extends Controller
     {
         $model = $this->findModel($id);
 
-        $model->file = UploadedFile::getInstance($model, 'file');
-        $model->photo = $model->upload();
-
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false)) {
-            return $this->redirect(['user/profile']);
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -122,7 +113,7 @@ class CarController extends Controller
     }
 
     /**
-     * Deletes an existing Car model.
+     * Deletes an existing Refills model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -132,19 +123,19 @@ class CarController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['user/profile']);
+        return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Car model based on its primary key value.
+     * Finds the Refills model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Car the loaded model
+     * @return Refills the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Car::findOne(['id' => $id])) !== null) {
+        if (($model = Refills::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

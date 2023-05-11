@@ -53,7 +53,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             <?php if (!Yii::$app->user->identity->role): ?>
                 <a href="<?= Url::to(['user/profile']) ?>">Профиль</a>
             <?php else: ?>
-                <a href="<?= Url::to(['user/index']) ?>">Пользователи</a>
+                <a href="<?= Url::to(['user/profile']) ?>">Админ панель</a>
             <?php endif ?>
             <?= Html::a("Выход", ['site/logout'], [
                     'data' => [
