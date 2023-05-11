@@ -2,6 +2,7 @@
 
 use yii\helpers\Url;
 
+$this->title = Yii::$app->user->identity->username;
 ?>
 <div class="profile">
     <div class="users">
@@ -18,11 +19,17 @@ use yii\helpers\Url;
             </div>
         </div>
     </div>
+    <?php if (!Yii::$app->user->identity->role): ?>
     <div class="cars">
-        <h1>Список моих автомобилей</h1>
+        <div>
+            <h1>Список моих автомобилей</h1>
+            <a href="<?= Url::to(['car/create']) ?>" data-method="post">
+                <button class="button green">Добавить</button>
+            </a>
+        </div>
         <?php foreach ($cars as $car): ?>
-            <div>
-                <img src="<?= Yii::$app->user->identity->avatar ?>" alt="Аватарка" width="300px" height="225px">
+            <div class="car">
+                <img src="<?= $car->photo ?>" alt="Фотография" width="300px" height="225px">
                 <div>
                     <h2><?= $car->name ?></h2>
                     <p><?= $car->brand ?> <?= $car->model ?></p>
@@ -36,10 +43,18 @@ use yii\helpers\Url;
                         <a href="<?= Url::to(['car/update', 'id' => $car->id]) ?>">
                             <button class="button gray">Изменить</button>
                         </a>
-                        <a href=""><img src="<?= Yii::$app->homeUrl ?>/web/bin.png" alt="Удалить" width="38"></a>
+                        <a href="<?= Url::to(['car/delete', 'id' => $car->id])?>" data-method="post"><img src="<?= Yii::$app->homeUrl ?>/web/img/bin.png" alt="Удалить" width="30"></a>
                     </div>
                 </div>
             </div>
         <?php endforeach ?>
     </div>
+    <?php else: ?>
+    <div class="cars">
+        <h1 class="adm">Админ панель</h1>
+        <a href="<?= Url::to(['car/create']) ?>" data-method="post">
+            <button class="button green">Добавить</button>
+        </a>
+    </div>
+    <?php endif ?>
 </div>

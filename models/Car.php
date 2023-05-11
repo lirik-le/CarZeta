@@ -21,10 +21,11 @@ use Yii;
  * @property Incomes[] $incomes
  * @property Refills[] $refills
  * @property Services[] $services
- * @property Users $user
+ * @property User $user
  */
 class Car extends \yii\db\ActiveRecord
 {
+    public $file;
     /**
      * {@inheritdoc}
      */
@@ -39,12 +40,24 @@ class Car extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'brand', 'model', 'photo', 'user_id'], 'required'],
+            [['name', 'brand', 'model', 'file', 'user_id'], 'required'],
             [['year'], 'safe'],
             [['user_id'], 'integer'],
             [['name', 'brand', 'model', 'number', 'photo', 'mileage'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
+    }
+
+    public function upload()
+    {
+        if (!$this->file)
+            return false;
+        $name = '/web/uploads/car/' . time() . rand(0, 100) . '.' . $this->file->extension;
+        $filename = Yii::getAlias('@webroot') . $name;
+        $url = Yii::getAlias('@web') . $name;
+        if ($this->file->saveAs($filename))
+            return $url;
+        return false;
     }
 
     /**
@@ -54,15 +67,16 @@ class Car extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'brand' => 'Brand',
-            'model' => 'Model',
-            'number' => 'Number',
-            'year' => 'Year',
-            'photo' => 'Photo',
-            'mileage' => 'Mileage',
+            'name' => 'Имя',
+            'brand' => 'Марка',
+            'model' => 'Модель',
+            'number' => 'Номер',
+            'year' => 'Год',
+            'photo' => 'Фото',
+            'mileage' => 'Пробег',
             'user_id' => 'User ID',
         ];
+
     }
 
     /**

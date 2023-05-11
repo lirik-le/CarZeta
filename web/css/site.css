@@ -99,6 +99,8 @@ header > div > a {
     margin-left: 20px;
 }
 
+/* форма */
+
 /* главная */
 
 .index-img {
@@ -178,25 +180,12 @@ header > div > a {
     text-align: center;
 }
 
-#login-form {
-    margin: 0 auto;
-}
-
-#login-form > div {
-    width: 20%;
-    margin: 30px auto !important;
-
-    --bs-gutter-x: 0;
-    --bs-gutter-y: 0;
-    display: block;
-}
-
 .input-error {
     text-align: left;
     color: #c74e4e;
 }
 
-#login-form > div:last-of-type > div {
+#form > div:last-of-type > div {
     text-align: center;
 }
 
@@ -211,7 +200,7 @@ header > div > a {
 
 /* регистрация */
 
-#register-form > div{
+#form > div{
     width: 22%;
     margin: 30px auto !important;
 
@@ -292,36 +281,39 @@ header > div > a {
     width: 55%;
 }
 
-.cars > div {
+.cars > div:first-of-type {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.cars > div:first-of-type > h1 {
+    font-family: OpenSans-Regular, serif;
+    margin-right: 30px;
+}
+
+.car {
     display: flex;
     align-items: center;
     justify-content: left;
     margin: 50px 0 0 0;
 }
 
-.cars > div > img {
+.car > img {
     margin-right: 40px;
     border-radius: 10px;
     object-fit:cover;
 }
 
-.cars > h1 {
-    font-family: OpenSans-Regular, serif;
-}
-
-/*.cars > div > div {*/
-/*    padding-top: 45px;*/
-/*}*/
-
-.cars > div > div > p {
+.car > div > p {
     margin-left: 20px;
 }
 
-.cars > div > div > div > a {
+.car > div > div > a {
     margin-right: 15px;
 }
 
-.cars > div::before {
+.car::before {
     content: '';
     width: 106px;
     height: 285px;

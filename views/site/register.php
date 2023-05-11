@@ -6,13 +6,15 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 /* @var $form ActiveForm */
+
+$this->title = 'Регистрация';
 ?>
 
 <div class="form-box">
     <h1>Регистрация</h1>
 
     <?php $form = ActiveForm::begin([
-        'id' => 'register-form',
+        'id' => 'form',
         'enableAjaxValidation' => true,
         'fieldConfig' => [
             'template' => "{input}\n{error}",

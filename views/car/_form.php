@@ -8,28 +8,29 @@ use yii\widgets\ActiveForm;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="car-form">
+<div class="form-box">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?php $form = ActiveForm::begin([
+        'id' => 'form',
+        'fieldConfig' => [
+            'template' => "{input}\n{error}",
+            'inputOptions' => ['class' => 'input-form'],
+            'errorOptions' => ['class' => 'input-error'],
+        ],
+    ]); ?>
 
-    <?= $form->field($model, 'brand')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'model')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'number')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'year')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'photo')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'mileage')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'user_id')->textInput() ?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder'=>'Имя']) ?>
+    <?= $form->field($model, 'brand')->textInput(['maxlength' => true, 'placeholder'=>'Марка']) ?>
+    <?= $form->field($model, 'model')->textInput(['maxlength' => true, 'placeholder'=>'Модель']) ?>
+    <?= $form->field($model, 'number')->textInput(['maxlength' => true, 'placeholder'=>'Номер - А001АА01']) ?>
+    <?= $form->field($model, 'year')->textInput(['type' => 'number', 'maxlength' => true, 'placeholder'=>'Год']) ?>
+    <?= $form->field($model, 'file', ['enableAjaxValidation' => false])->fileInput() ?>
+    <?= $form->field($model, 'mileage')->textInput(['type' => 'number','maxlength' => true, 'placeholder'=>'Пробег']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' =>'button green']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -25,7 +25,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <?php if (Yii::$app->request->url === "/CarZeta/site/index" or Yii::$app->request->url === "/CarZeta/"): ?>
-    <img src="<?= Yii::$app->homeUrl ?>/web/index-blur.jpg" class="index-img h-100 w-100">
+    <img src="<?= Yii::$app->homeUrl ?>/web/img/index-blur.jpg" class="index-img h-100 w-100">
 <?php endif ?>
 <head>
     <title><?= Html::encode($this->title) ?></title>
@@ -38,11 +38,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <header>
     <?php if (Yii::$app->request->url === "/CarZeta/site/index" or Yii::$app->request->url === "/CarZeta/"): ?>
         <a href="<?= Url::to(['/']) ?>">
-            <img src="<?= Yii::$app->homeUrl ?>/web/carzeta-logo-dark.png" width="180px">
+            <img src="<?= Yii::$app->homeUrl ?>/web/img/carzeta-logo-dark.png" width="180px">
         </a>
     <?php else: ?>
         <a href="<?= Url::to(['/']) ?>">
-            <img src="<?= Yii::$app->homeUrl ?>/web/carzeta-logo-light.png" width="180px">
+            <img src="<?= Yii::$app->homeUrl ?>/web/img/carzeta-logo-light.png" width="180px">
         </a>
     <?php endif ?>
     <div>

@@ -18,7 +18,7 @@ use yii\web\IdentityInterface;
  * @property string $avatar
  * @property int $role
  *
- * @property Cars[] $cars
+ * @property Car[] $cars
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -49,7 +49,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         if (!$this->file)
             return false;
-        $name = '/web/uploads/' . time() . rand(0, 100) . '.' . $this->file->extension;
+        $name = '/web/uploads/user/' . time() . rand(0, 100) . '.' . $this->file->extension;
         $filename = Yii::getAlias('@webroot') . $name;
         $url = Yii::getAlias('@web') . $name;
         if ($this->file->saveAs($filename))
@@ -106,7 +106,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return $this->password === md5($password);
     }
 
     /**

@@ -89,21 +89,13 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
         $model->role = 0;
+        $model->file = UploadedFile::getInstance($model, 'file');
+        $model->avatar = $model->upload();
 
-        if ($model->load($this->request->post())) {
-
-            $model->file = UploadedFile::getInstance($model, 'file');
-            $uploadedFileName = $model->upload();
-            $model->avatar = $uploadedFileName;
-
-            if ($model->validate()) {
-                $model->save(false);
-                return $this->goHome();
-            }
-//            $model->save(false);
-//            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false))
+            return $this->redirect(['view', 'id' => $model->id]);
 
         return $this->render('update', [
             'model' => $model,
@@ -136,9 +128,8 @@ class UserController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne(['id' => $id])) !== null) {
+        if (($model = User::findOne(['id' => $id])) !== null)
             return $model;
-        }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
