@@ -359,6 +359,8 @@ header > div > a {
 .input-form {
     border: none;
     width: 100%;
+    min-height: 32px;
+    max-height: 200px;
     border-bottom: 3px solid #38353B;
     outline: none;
     padding-left: 10px;

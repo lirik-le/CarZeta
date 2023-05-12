@@ -8,22 +8,27 @@ use yii\widgets\ActiveForm;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="expenditures-form">
+<div class="form-box">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $form->field($model, 'type_of_expenditures')->textInput(['maxlength' => true]) ?>
+    <?php $form = ActiveForm::begin([
+        'id' => 'form',
+        'fieldConfig' => [
+            'template' => "{input}\n{error}",
+            'inputOptions' => ['class' => 'input-form'],
+            'errorOptions' => ['class' => 'input-error'],
+        ],
+    ]); ?>
 
-    <?= $form->field($model, 'amount')->textInput() ?>
-
-    <?= $form->field($model, 'date')->textInput() ?>
-
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'car_id')->textInput() ?>
+    <?= $form->field($model, 'type_of_expenditures')->textInput(['placeholder' => 'Название', 'maxlength' => true]) ?>
+    <?= $form->field($model, 'amount')->textInput(['placeholder' => 'Сумма']) ?>
+    <?= $form->field($model, 'date')->input('date') ?>
+    <?= $form->field($model, 'description')->textarea(['placeholder' => 'Описание', 'rows' => 1]) ?>
+    <?= $form->field($model, 'car_id')->input('hidden') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Записать', ['class' => 'button green']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

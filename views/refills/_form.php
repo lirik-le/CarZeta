@@ -8,22 +8,27 @@ use yii\widgets\ActiveForm;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="refills-form">
+<div class="form-box">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $form->field($model, 'amount')->textInput() ?>
+    <?php $form = ActiveForm::begin([
+        'id' => 'form',
+        'fieldConfig' => [
+            'template' => "{input}\n{error}",
+            'inputOptions' => ['class' => 'input-form'],
+            'errorOptions' => ['class' => 'input-error'],
+        ],
+    ]); ?>
 
+    <?= $form->field($model, 'amount')->textInput(['placeholder' => 'Сумма']) ?>
     <?= $form->field($model, 'id_fuel')->textInput() ?>
-
-    <?= $form->field($model, 'liters')->textInput() ?>
-
-    <?= $form->field($model, 'date')->textInput() ?>
-
-    <?= $form->field($model, 'car_id')->textInput() ?>
+    <?= $form->field($model, 'liters')->textInput(['placeholder' => 'Литры']) ?>
+    <?= $form->field($model, 'date')->input('date') ?>
+    <?= $form->field($model, 'car_id')->input('hidden') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Записать', ['class' => 'button green']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
