@@ -115,7 +115,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => 'id',
             'lastname' => 'Фамилия',
             'firstname' => 'Имя',
             'username' => 'Логин',

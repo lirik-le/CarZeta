@@ -66,7 +66,7 @@ class Car extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => 'id',
             'name' => 'Имя',
             'brand' => 'Марка',
             'model' => 'Модель',
@@ -74,7 +74,7 @@ class Car extends \yii\db\ActiveRecord
             'year' => 'Год',
             'photo' => 'Фото',
             'mileage' => 'Пробег',
-            'user_id' => 'User ID',
+            'user_id' => 'Владелец',
         ];
 
     }

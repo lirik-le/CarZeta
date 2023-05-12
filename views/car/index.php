@@ -16,11 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Car', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -31,10 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'brand',
             'model',
             'number',
-            //'year',
-            //'photo',
-            //'mileage',
-            //'user_id',
+            'year',
+            'photo:image',
+            'mileage',
+            'user_id',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Car $model, $key, $index, $column) {

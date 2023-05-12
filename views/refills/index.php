@@ -9,17 +9,12 @@ use yii\grid\GridView;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'refills';
+$this->title = 'Заправки';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="refills-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create refills', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -31,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_fuel',
             'liters',
             'date',
-            //'car_id',
+            'car_id',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Refills $model, $key, $index, $column) {

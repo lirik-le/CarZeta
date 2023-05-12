@@ -17,7 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Fuel Types', ['create'], ['class' => 'btn btn-success']) ?>
+        <a href="<?= Url::to(['create']) ?>">
+            <button class="button green">Добавить</button>
+        </a>
     </p>
 
 

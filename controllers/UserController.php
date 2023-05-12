@@ -92,10 +92,6 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
-        $model->role = 0;
-        $model->file = UploadedFile::getInstance($model, 'file');
-        $model->avatar = $model->upload();
-
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false))
             return $this->redirect(['view', 'id' => $model->id]);
 

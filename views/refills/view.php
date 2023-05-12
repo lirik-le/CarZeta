@@ -1,12 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
 /** @var app\models\Refills $model */
 
-$this->title = $model->id;
+$this->title = $model->fuel->fuel;
 $this->params['breadcrumbs'][] = ['label' => 'refills', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -14,17 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="refills-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -34,8 +24,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_fuel',
             'liters',
             'date',
-            'car_id',
+            "id_fuel",
         ],
     ]) ?>
+
+    <p>
+        <a href="<?= Url::to(['update', 'id' => $model->id]) ?>">
+            <button class="button green">Изменить</button>
+        </a>
+        <a href="<?= Url::to(['delete', 'id' => $model->id]) ?>" data-method="post">
+            <button class="button red">Удалить</button>
+        </a>
+    </p>
 
 </div>

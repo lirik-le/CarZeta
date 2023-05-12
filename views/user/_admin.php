@@ -26,8 +26,11 @@ use yii\helpers\Url;
         <a href="<?= Url::to(['services/index']) ?>" data-method="post">
             <button class="button gray">Сервисы</button>
         </a>
+        <a href="<?= Url::to(['refills/index']) ?>" data-method="post">
+            <button class="button yellow">Заправки</button>
+        </a>
         <a href="<?= Url::to(['fuel-types/index']) ?>" data-method="post">
-            <button class="button yellow">Типы топлива</button>
+            <button class="button green">Типы топлива</button>
         </a>
     </div>
 </div>

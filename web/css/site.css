@@ -114,12 +114,136 @@ a:hover{
     display: none;
 }
 
-.user-index, .user-view, .user {
-    width: 80%;
+/* админка пользователя */
+
+.user-index, .user-view {
+    width: 70%;
     margin: 50px auto;
 }
 
+.user-index > h1, .user-view > h1, .user-view > p {
+    margin-left: 20px;
+}
+
+.user-view > p > a {
+    margin-right: 10px;
+}
+
 .user-index > h1 {
+    margin-bottom: 20px;
+}
+
+/* админка машины */
+
+.car-index, .car-view {
+    width: 70%;
+    margin: 50px auto;
+}
+
+.car-index > h1, .car-view > h1, .car-view > p {
+    margin-left: 20px;
+}
+
+.car-view > p > a {
+    margin-right: 10px;
+}
+
+.car-index > h1 {
+    margin-bottom: 20px;
+}
+
+/* админка доходов */
+
+.incomes-index, .incomes-view {
+    width: 70%;
+    margin: 50px auto;
+}
+
+.incomes-index > h1, .incomes-view > h1, .incomes-view > p {
+    margin-left: 20px;
+}
+
+.incomes-view > p > a {
+    margin-right: 10px;
+}
+
+.incomes-index > h1 {
+    margin-bottom: 20px;
+}
+
+/* админка расходов */
+
+.expenditures-index, .expenditures-view {
+    width: 70%;
+    margin: 50px auto;
+}
+
+.expenditures-index > h1, .expenditures-view > h1, .expenditures-view > p {
+    margin-left: 20px;
+}
+
+.expenditures-view > p > a {
+    margin-right: 10px;
+}
+
+.expenditures-index > h1 {
+    margin-bottom: 20px;
+}
+
+/* админка сервисов */
+
+.services-index, .services-view {
+    width: 70%;
+    margin: 50px auto;
+}
+
+.services-index > h1, .services-view > h1, .services-view > p {
+    margin-left: 20px;
+}
+
+.services-view > p > a {
+    margin-right: 10px;
+}
+
+.services-index > h1 {
+    margin-bottom: 20px;
+}
+
+/* админка заправок */
+
+.refills-index, .refills-view {
+    width: 70%;
+    margin: 50px auto;
+}
+
+.refills-index > h1, .refills-view > h1, .refills-view > p {
+    margin-left: 20px;
+}
+
+.refills-view > p > a {
+    margin-right: 10px;
+}
+
+.refills-index > h1 {
+    margin-bottom: 20px;
+}
+
+/* админка заправок */
+
+.fuel-types-index, .fuel-types-view {
+    width: 70%;
+    margin: 50px auto;
+}
+
+.fuel-types-index > h1, .fuel-types-view > h1, .fuel-types-view > p {
+    margin-left: 20px;
+}
+
+.fuel-types-view > p > a {
+    margin-right: 10px;
+}
+
+.fuel-types-index > h1 {
     margin-bottom: 20px;
 }
 
