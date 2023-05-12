@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Services;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -78,6 +79,7 @@ class ServicesController extends Controller
     public function actionCreate()
     {
         $model = new Services();
+        $model->car_id = Yii::$app->request->getQueryParams()['car_id'];
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {

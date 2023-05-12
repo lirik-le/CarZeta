@@ -21,7 +21,7 @@ use yii\helpers\Url;
             <p><?= $car->year ?> год</p>
             <p><?= $car->mileage ?></p>
             <div>
-                <a href="<?= Url::to(['car/notes']) ?>">
+                <a href="<?= Url::to(['car/notes', 'car_id' => $car->id]) ?>">
                     <button class="button green">Записи</button>
                 </a>
                 <a href="<?= Url::to(['car/update', 'id' => $car->id]) ?>">

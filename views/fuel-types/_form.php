@@ -8,14 +8,23 @@ use yii\widgets\ActiveForm;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="fuel-types-form">
+<div class="form-box">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $form->field($model, 'fuel')->textInput(['maxlength' => true]) ?>
+    <?php $form = ActiveForm::begin([
+        'id' => 'form',
+        'fieldConfig' => [
+            'template' => "{input}\n{error}",
+            'inputOptions' => ['class' => 'input-form'],
+            'errorOptions' => ['class' => 'input-error'],
+        ],
+    ]); ?>
+
+    <?= $form->field($model, 'fuel')->textInput(['placeholder' => 'Тип топлива', 'maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'button green']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

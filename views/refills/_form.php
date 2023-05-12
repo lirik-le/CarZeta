@@ -1,12 +1,21 @@
 <?php
 
+use app\models\FuelTypes;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var app\models\Refills $model */
 /** @var yii\widgets\ActiveForm $form */
+
+$fuelTypes = FuelTypes::find()->all();
+
+foreach ($fuelTypes as $key => $elem) {
+    $items[$key] = $elem->fuel;
+}
+
 ?>
+
 
 <div class="form-box">
 
@@ -22,7 +31,7 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'amount')->textInput(['placeholder' => 'Сумма']) ?>
-    <?= $form->field($model, 'id_fuel')->textInput() ?>
+    <?= $form->field($model, 'id_fuel')->dropDownList($items, ['prompt' => 'Тип топлива...']) ?>
     <?= $form->field($model, 'liters')->textInput(['placeholder' => 'Литры']) ?>
     <?= $form->field($model, 'date')->input('date') ?>
     <?= $form->field($model, 'car_id')->input('hidden') ?>

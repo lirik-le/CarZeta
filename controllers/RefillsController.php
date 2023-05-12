@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Refills;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -78,6 +79,7 @@ class RefillsController extends Controller
     public function actionCreate()
     {
         $model = new Refills();
+        $model->car_id = Yii::$app->request->getQueryParams()['car_id'];
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {

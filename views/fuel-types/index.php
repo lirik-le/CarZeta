@@ -9,7 +9,7 @@ use yii\grid\GridView;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Fuel Types';
+$this->title = 'Типы топлива';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="fuel-types-index">
