@@ -45,7 +45,7 @@ class FuelTypes extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Refills]].
+     * Gets query for [[refills]].
      *
      * @return \yii\db\ActiveQuery
      */

@@ -80,7 +80,7 @@ class Car extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Expenditures]].
+     * Gets query for [[expenditures]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -90,7 +90,7 @@ class Car extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Incomes]].
+     * Gets query for [[incomes]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -100,7 +100,7 @@ class Car extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Refills]].
+     * Gets query for [[refills]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -110,7 +110,7 @@ class Car extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Services]].
+     * Gets query for [[services]].
      *
      * @return \yii\db\ActiveQuery
      */

@@ -55,6 +55,26 @@ a:hover{
     color: #38353B;
 }
 
+.red {
+    background-color: #CF5252;
+    border-color: #CF5252;
+}
+
+.red:hover {
+    background-color: rgb(243, 243, 243);
+    color: #38353B;
+}
+
+.yellow {
+    background-color: #E1E35C;
+    border-color: #E1E35C;
+}
+
+.yellow:hover {
+    background-color: rgb(243, 243, 243);
+    color: #38353B;
+}
+
 .gray {
     background-color: #38353B;
     border-color: #38353B;
@@ -238,7 +258,7 @@ header > div > a {
     z-index: -1;
     left: 400px;
     bottom: 0;
-    position: absolute;
+    position: fixed;
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
 }
 
@@ -322,4 +342,94 @@ header > div > a {
     left: 53px;
     position: relative;
     border-radius: 10px;
+}
+
+/* записи */
+
+.notes {
+    padding: 60px 0;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1400px;
+    margin: 0 auto 60px;
+}
+
+.menu > div:first-of-type {
+    display: flex;
+}
+
+.menu > div:first-of-type > a:first-of-type {
+    margin-right: 80px;
+}
+
+.menu > div:first-of-type > a {
+    margin-right: 20px;
+}
+
+.notes-list {
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 0;
+}
+
+.note {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 55px;
+}
+
+.note:last-of-type {
+    margin-bottom: 0;
+}
+
+.notes-list > div > div:first-of-type {
+    width: 100px;
+    height: 100px;
+    border: 3px solid #48B585;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.note-info {
+    width: 90%;
+}
+
+.note-info div {
+    display: flex;
+}
+
+.note-info p {
+    margin: 0;
+    font-size: 22px;
+}
+
+.note-img {
+    width: 100%;
+    height: 100%;
+}
+
+.note-header {
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #38353B;
+    padding: 0 20px 12px 20px;
+}
+
+.note-header > div > p:last-of-type {
+    margin-left: 20px;
+}
+
+.note-footer {
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px 0 20px;
+}
+
+.note-footer > div > a:last-of-type {
+    margin-left: 20px;
 }

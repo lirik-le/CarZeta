@@ -48,7 +48,7 @@ class Expenditures extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type_of_expenditures' => 'Type Of Expenditures',
+            'type_of_expenditures' => 'Type Of expenditures',
             'amount' => 'Amount',
             'date' => 'Date',
             'description' => 'Description',

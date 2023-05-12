@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * RefillsController implements the CRUD actions for Refills model.
+ * RefillsController implements the CRUD actions for refills model.
  */
 class RefillsController extends Controller
 {
@@ -32,7 +32,7 @@ class RefillsController extends Controller
     }
 
     /**
-     * Lists all Refills models.
+     * Lists all refills models.
      *
      * @return string
      */
@@ -58,7 +58,7 @@ class RefillsController extends Controller
     }
 
     /**
-     * Displays a single Refills model.
+     * Displays a single refills model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -71,7 +71,7 @@ class RefillsController extends Controller
     }
 
     /**
-     * Creates a new Refills model.
+     * Creates a new refills model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
@@ -93,7 +93,7 @@ class RefillsController extends Controller
     }
 
     /**
-     * Updates an existing Refills model.
+     * Updates an existing refills model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -113,7 +113,7 @@ class RefillsController extends Controller
     }
 
     /**
-     * Deletes an existing Refills model.
+     * Deletes an existing refills model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -127,7 +127,7 @@ class RefillsController extends Controller
     }
 
     /**
-     * Finds the Refills model based on its primary key value.
+     * Finds the refills model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
      * @return Refills the loaded model

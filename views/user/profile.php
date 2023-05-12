@@ -2,24 +2,24 @@
 
 use yii\helpers\Url;
 
-$this->title = Yii::$app->user->identity->username;
+$this->title = $user->username;
 ?>
 <div class="profile">
     <div class="users">
         <div>
-            <img src="<?= Yii::$app->user->identity->avatar ?>" alt="Аватарка" width="250px" height="250px">
+            <img src="<?= $user->avatar ?>" alt="Аватарка" width="250px" height="250px">
             <div>
-                <h2><?= Yii::$app->user->identity->username ?></h2>
-                <p><?= Yii::$app->user->identity->lastname ?> <?= Yii::$app->user->identity->firstname ?></p>
-                <p><?= Yii::$app->user->identity->email ?></p>
-                <p><?= Yii::$app->user->identity->number ?></p>
-                <a href="<?= Url::to(['user/update', 'id' => Yii::$app->user->identity->id]) ?>">
+                <h2><?= $user->username ?></h2>
+                <p><?= $user->lastname ?> <?= Yii::$app->user->identity->firstname ?></p>
+                <p><?= $user->email ?></p>
+                <p><?= $user->number ?></p>
+                <a href="<?= Url::to(['user/update', 'id' => $user->id]) ?>">
                     <button class="button green">Изменить</button>
                 </a>
             </div>
         </div>
     </div>
-    <?php if (!Yii::$app->user->identity->role): ?>
+    <?php if (!$user->role): ?>
     <div class="cars">
         <div>
             <h1>Список моих автомобилей</h1>
@@ -37,7 +37,7 @@ $this->title = Yii::$app->user->identity->username;
                     <p><?= $car->year ?> год</p>
                     <p><?= $car->mileage ?></p>
                     <div>
-                        <a href="<?= Url::to(['']) ?>">
+                        <a href="<?= Url::to(['car/notes']) ?>">
                             <button class="button green">Записи</button>
                         </a>
                         <a href="<?= Url::to(['car/update', 'id' => $car->id]) ?>">

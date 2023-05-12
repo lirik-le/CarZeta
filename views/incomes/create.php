@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Incomes $model */
 
-$this->title = 'Create Incomes';
-$this->params['breadcrumbs'][] = ['label' => 'Incomes', 'url' => ['index']];
+$this->title = 'Create incomes';
+$this->params['breadcrumbs'][] = ['label' => 'incomes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="incomes-create">

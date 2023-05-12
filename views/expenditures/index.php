@@ -9,7 +9,7 @@ use yii\grid\GridView;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Expenditures';
+$this->title = 'expenditures';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="expenditures-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Expenditures', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create expenditures', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 

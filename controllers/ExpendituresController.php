@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ExpendituresController implements the CRUD actions for Expenditures model.
+ * ExpendituresController implements the CRUD actions for expenditures model.
  */
 class ExpendituresController extends Controller
 {
@@ -32,7 +32,7 @@ class ExpendituresController extends Controller
     }
 
     /**
-     * Lists all Expenditures models.
+     * Lists all expenditures models.
      *
      * @return string
      */
@@ -58,7 +58,7 @@ class ExpendituresController extends Controller
     }
 
     /**
-     * Displays a single Expenditures model.
+     * Displays a single expenditures model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -71,7 +71,7 @@ class ExpendituresController extends Controller
     }
 
     /**
-     * Creates a new Expenditures model.
+     * Creates a new expenditures model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
@@ -93,7 +93,7 @@ class ExpendituresController extends Controller
     }
 
     /**
-     * Updates an existing Expenditures model.
+     * Updates an existing expenditures model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -113,7 +113,7 @@ class ExpendituresController extends Controller
     }
 
     /**
-     * Deletes an existing Expenditures model.
+     * Deletes an existing expenditures model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -127,7 +127,7 @@ class ExpendituresController extends Controller
     }
 
     /**
-     * Finds the Expenditures model based on its primary key value.
+     * Finds the expenditures model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
      * @return Expenditures the loaded model

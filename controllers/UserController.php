@@ -36,8 +36,10 @@ class UserController extends Controller
 
     public function actionProfile()
     {
-        $cars = Car::findAll(['user_id' => Yii::$app->user->identity->id]);
-        return $this->render('profile', ['cars' => $cars]);
+        $user = User::findOne(Yii::$app->user->identity->id);
+        $cars = $user->cars;
+
+        return $this->render('profile', ['user' => $user, 'cars' => $cars]);
     }
 
     /**

@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * IncomesController implements the CRUD actions for Incomes model.
+ * IncomesController implements the CRUD actions for incomes model.
  */
 class IncomesController extends Controller
 {
@@ -32,7 +32,7 @@ class IncomesController extends Controller
     }
 
     /**
-     * Lists all Incomes models.
+     * Lists all incomes models.
      *
      * @return string
      */
@@ -58,7 +58,7 @@ class IncomesController extends Controller
     }
 
     /**
-     * Displays a single Incomes model.
+     * Displays a single incomes model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -71,7 +71,7 @@ class IncomesController extends Controller
     }
 
     /**
-     * Creates a new Incomes model.
+     * Creates a new incomes model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
@@ -93,7 +93,7 @@ class IncomesController extends Controller
     }
 
     /**
-     * Updates an existing Incomes model.
+     * Updates an existing incomes model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -113,7 +113,7 @@ class IncomesController extends Controller
     }
 
     /**
-     * Deletes an existing Incomes model.
+     * Deletes an existing incomes model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -127,7 +127,7 @@ class IncomesController extends Controller
     }
 
     /**
-     * Finds the Incomes model based on its primary key value.
+     * Finds the incomes model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
      * @return Incomes the loaded model

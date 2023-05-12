@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ServicesController implements the CRUD actions for Services model.
+ * ServicesController implements the CRUD actions for services model.
  */
 class ServicesController extends Controller
 {
@@ -32,7 +32,7 @@ class ServicesController extends Controller
     }
 
     /**
-     * Lists all Services models.
+     * Lists all services models.
      *
      * @return string
      */
@@ -58,7 +58,7 @@ class ServicesController extends Controller
     }
 
     /**
-     * Displays a single Services model.
+     * Displays a single services model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -71,7 +71,7 @@ class ServicesController extends Controller
     }
 
     /**
-     * Creates a new Services model.
+     * Creates a new services model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
@@ -93,7 +93,7 @@ class ServicesController extends Controller
     }
 
     /**
-     * Updates an existing Services model.
+     * Updates an existing services model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -113,7 +113,7 @@ class ServicesController extends Controller
     }
 
     /**
-     * Deletes an existing Services model.
+     * Deletes an existing services model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -127,7 +127,7 @@ class ServicesController extends Controller
     }
 
     /**
-     * Finds the Services model based on its primary key value.
+     * Finds the services model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
      * @return Services the loaded model

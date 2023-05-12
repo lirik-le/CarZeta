@@ -9,7 +9,7 @@ use yii\grid\GridView;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Refills';
+$this->title = 'refills';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="refills-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Refills', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create refills', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 

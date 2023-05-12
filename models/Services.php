@@ -48,7 +48,7 @@ class Services extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type_of_services' => 'Type Of Services',
+            'type_of_services' => 'Type Of services',
             'amount' => 'Amount',
             'date' => 'Date',
             'description' => 'Description',

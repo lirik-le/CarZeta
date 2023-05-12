@@ -9,7 +9,7 @@ use yii\grid\GridView;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Cars';
+$this->title = 'Машины';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="car-index">

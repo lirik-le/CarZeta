@@ -72,6 +72,11 @@ class CarController extends Controller
         ]);
     }
 
+    public function actionNotes()
+    {
+        return $this->render('notes');
+    }
+
     /**
      * Creates a new Car model.
      * If creation is successful, the browser will be redirected to the 'view' page.
