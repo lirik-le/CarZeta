@@ -38,7 +38,7 @@ a:hover{
 
 .button {
     color: white;
-    width: 140px;
+    width: 160px;
     height: 38px;
     border-radius: 10px;
     border: 3px solid;
@@ -86,6 +86,29 @@ a:hover{
 }
 
 /* админка */
+
+.adm {
+    padding-top: 80px;
+    width: 55%;
+}
+
+.adm > h1 {
+    font-family: OpenSans-Regular, serif;
+    margin-bottom: 20px;
+}
+
+.adm > div {
+    margin: 0 0 40px 10px;
+}
+
+.adm > div > p {
+    font-size: 22px;
+    margin-left: 10px;
+}
+
+.adm > div > a {
+    margin-right: 10px;
+}
 
 .summary {
     display: none;
@@ -239,12 +262,12 @@ header > div > a {
 
 .profile::before {
     content: '';
-    width: 58px;
+    width: 48px;
     height: 300px;
-    transform: rotate(16deg);
+    transform: rotate(14deg);
     background-color: #48B585;
     z-index: -1;
-    left: -30px;
+    left: -14px;
     bottom: 10px;
     position: absolute;
     border-radius: 10px;
