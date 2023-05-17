@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Refills;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -22,6 +23,28 @@ class RefillsController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['index', 'view', 'create', 'update', 'delete'],
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'view'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function () {
+                                return Yii::$app->user->identity->role;
+                            }
+                        ],
+                        [
+                            'actions' => ['create', 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['@']
+                        ],
+                    ],
+                    'denyCallback' => function () {
+                        return $this->goHome();
+                    },
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -41,16 +64,6 @@ class RefillsController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Refills::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
         ]);
 
         return $this->render('index', [
@@ -83,7 +96,10 @@ class RefillsController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                if (Yii::$app->user->identity->role)
+                    return $this->redirect(['view', 'id' => $model->id]);
+                else
+                    return $this->redirect(['car/notes', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]);
             }
         } else {
             $model->loadDefaultValues();
@@ -106,7 +122,10 @@ class RefillsController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if (Yii::$app->user->identity->role)
+                return $this->redirect(['view', 'id' => $model->id]);
+            else
+                return $this->redirect(['car/notes', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]);
         }
 
         return $this->render('update', [
@@ -125,7 +144,10 @@ class RefillsController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        if (Yii::$app->user->identity->role)
+            return $this->redirect(['view', 'id' => $model->id]);
+        else
+            return $this->redirect(['car/notes', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]);
     }
 
     /**

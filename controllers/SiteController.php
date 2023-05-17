@@ -21,14 +21,22 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout'],
+                'only' => ['register', 'login', 'logout'],
                 'rules' => [
+                    [
+                        'actions' => ['register', 'login'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
                     [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                 ],
+                'denyCallback' => function () {
+                    return $this->goHome();
+                },
             ],
             'verbs' => [
                 'class' => VerbFilter::class,
@@ -47,10 +55,6 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
     }
@@ -85,9 +89,6 @@ class SiteController extends Controller
                 // принудительная установка роли
                 $model->password = md5($model->password);
                 $model->save(false);
-                // установка флеш-сообщения, для улучшения юзабилити
-                Yii::$app->session
-                    ->setFlash('success', 'Вы успешно зарегистрированы!');
                 // перенаправление на главную
                 return $this->goHome();
             }
@@ -105,10 +106,6 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();

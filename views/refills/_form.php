@@ -11,9 +11,8 @@ use yii\widgets\ActiveForm;
 $fuelTypes = FuelTypes::find()->all();
 
 foreach ($fuelTypes as $key => $elem) {
-    $items[$key] = $elem->fuel;
+    $items[$key+1] = $elem->fuel;
 }
-
 ?>
 
 

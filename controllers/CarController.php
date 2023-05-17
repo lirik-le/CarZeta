@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\Car;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,6 +25,28 @@ class CarController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['index', 'view', 'create', 'update', 'delete', 'notes'],
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'view'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function () {
+                                return Yii::$app->user->identity->role;
+                            }
+                        ],
+                        [
+                            'actions' => ['create', 'update', 'delete', 'notes'],
+                            'allow' => true,
+                            'roles' => ['@']
+                        ],
+                    ],
+                    'denyCallback' => function () {
+                        return $this->goHome();
+                    },
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -42,16 +66,6 @@ class CarController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Car::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
         ]);
 
         return $this->render('index', [
@@ -74,7 +88,17 @@ class CarController extends Controller
 
     public function actionNotes()
     {
-        return $this->render('notes');
+        $car = Car::findOne(Yii::$app->request->getQueryParam('car_id'));
+        $expenditures = $car->expenditures;
+        $incomes = $car->incomes;
+        $refills = $car->refills;
+        $services = $car->services;
+
+        $notes = array_merge($expenditures, $incomes, $refills, $services);
+
+        ArrayHelper::multisort($notes, ['date'], [SORT_DESC]);
+
+        return $this->render('notes', ['notes' => $notes]);
     }
 
     /**
@@ -113,6 +137,10 @@ class CarController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        if ($model->user_id !== Yii::$app->user->identity->id) {
+            return $this->goHome();
+        }
 
         $model->file = UploadedFile::getInstance($model, 'file');
         $model->photo = $model->upload();

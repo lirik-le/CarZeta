@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 use app\models\FuelTypes;
+use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,6 +23,23 @@ class FuelTypesController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['index', 'view', 'create', 'update', 'delete'],
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function () {
+                                return Yii::$app->user->identity->role;
+                            }
+                        ],
+                    ],
+                    'denyCallback' => function () {
+                        return $this->goHome();
+                    },
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -40,16 +59,6 @@ class FuelTypesController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => FuelTypes::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
         ]);
 
         return $this->render('index', [

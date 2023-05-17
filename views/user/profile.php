@@ -14,18 +14,18 @@ $this->title = $user->username;
                 <p><?= $user->lastname ?> <?= Yii::$app->user->identity->firstname ?></p>
                 <p><?= $user->email ?></p>
                 <p><?= $user->number ?></p>
-                    <a href="<?= Url::to(['user/update', 'id' => $user->id]) ?>">
-                        <button class="button green">Изменить</button>
-                    </a>
+                <a href="<?= Url::to(['user/update', 'id' => $user->id]) ?>">
+                    <button class="button green">Изменить</button>
+                </a>
             </div>
         </div>
     </div>
 
-        <?php if (!$user->role): ?>
-            <?= $this->render('_cars', [
-                'cars' => $cars,
-            ]) ?>
-        <?php else: ?>
-            <?= $this->render('_admin') ?>
-        <?php endif ?>
+    <?php if (!$user->role): ?>
+        <?= $this->render('_cars', [
+            'cars' => $cars,
+        ]) ?>
+    <?php else: ?>
+        <?= $this->render('_admin') ?>
+    <?php endif ?>
 </div>

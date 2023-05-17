@@ -536,14 +536,6 @@ header > div > a {
     margin-bottom: 0;
 }
 
-.notes-list > div > div:first-of-type {
-    width: 100px;
-    height: 100px;
-    border: 3px solid #48B585;
-    padding: 15px;
-    border-radius: 50%;
-}
-
 .note-info {
     width: 90%;
 }
@@ -553,13 +545,13 @@ header > div > a {
 }
 
 .note-info p {
-    margin: 0;
+    margin-bottom: 0;
     font-size: 22px;
 }
 
 .note-img {
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
 }
 
 .note-header {
@@ -581,4 +573,8 @@ header > div > a {
 
 .note-footer > div > a:last-of-type {
     margin-left: 20px;
+}
+
+.fuel {
+    margin-right: 20px;
 }

@@ -2,14 +2,13 @@
 
 namespace app\controllers;
 
-use app\models\Car;
 use app\models\User;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -24,6 +23,28 @@ class UserController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['index', 'view', 'delete', 'profile', 'update'],
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'view', 'delete'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function () {
+                                return Yii::$app->user->identity->role;
+                            }
+                        ],
+                        [
+                            'actions' => ['profile', 'update'],
+                            'allow' => true,
+                            'roles' => ['@']
+                        ],
+                    ],
+                    'denyCallback' => function () {
+                        return $this->goHome();
+                    },
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -51,16 +72,6 @@ class UserController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => User::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
         ]);
 
         return $this->render('index', [
@@ -110,9 +121,6 @@ class UserController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
-        Yii::$app->session
-            ->setFlash('success', 'Вы удалили профиль!');
 
         return $this->redirect(['index']);
     }

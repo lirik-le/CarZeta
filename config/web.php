@@ -49,6 +49,7 @@ $config = [
                 'login' => 'site/login',
             ],
         ],
+        'authManager' => ['class' => 'yii\rbac\DbManager'],
     ],
     'params' => $params,
 ];
