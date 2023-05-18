@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\Car;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\data\ArrayDataProvider;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -95,10 +97,25 @@ class CarController extends Controller
         $services = $car->services;
 
         $notes = array_merge($expenditures, $incomes, $refills, $services);
-
         ArrayHelper::multisort($notes, ['date'], [SORT_DESC]);
 
-        return $this->render('notes', ['notes' => $notes]);
+        $pagination = new Pagination([
+            'totalCount' => count($notes),
+            'pageSize' => 10,
+        ]);
+
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => $notes,
+            'pagination' => [
+                'pageSize' => $pagination->pageSize,
+                'page' => $pagination->getPage(),
+            ],
+        ]);
+
+        $notes = $dataProvider->getModels();
+        $pages = $dataProvider->getPagination();
+
+        return $this->render('notes', ['notes' => $notes, 'pages' => $pages]);
     }
 
     /**

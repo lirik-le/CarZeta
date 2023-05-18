@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 
 $this->title = 'Записи';
 
@@ -101,5 +102,10 @@ $this->title = 'Записи';
                 </div>
             </div>
         <?php endforeach; ?>
+        <div class="paginations">
+            <?= LinkPager::widget([
+                'pagination' => $pages,
+            ]); ?>
+        </div>
     </div>
 </div>
