@@ -3,6 +3,10 @@
 namespace app\controllers;
 
 use app\models\Car;
+use app\models\Expenditures;
+use app\models\Incomes;
+use app\models\Refills;
+use app\models\Services;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
@@ -91,10 +95,12 @@ class CarController extends Controller
     public function actionNotes()
     {
         $car = Car::findOne(Yii::$app->request->getQueryParam('car_id'));
-        $expenditures = $car->expenditures;
-        $incomes = $car->incomes;
-        $refills = $car->refills;
-        $services = $car->services;
+
+        $expenditures = Expenditures::findAll(['car_id' => $car->id]);
+        $incomes = Incomes::findAll(['car_id' => $car->id]);
+        $refills = Refills::findAll(['car_id' => $car->id]);
+        $services = Services::findAll(['car_id' => $car->id]);
+
 
         $notes = array_merge($expenditures, $incomes, $refills, $services);
         ArrayHelper::multisort($notes, ['date'], [SORT_DESC]);
@@ -109,6 +115,8 @@ class CarController extends Controller
             'pagination' => [
                 'pageSize' => $pagination->pageSize,
                 'page' => $pagination->getPage(),
+                'pageSizeParam' => false,
+                'forcePageParam' => false
             ],
         ]);
 

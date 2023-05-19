@@ -36,6 +36,11 @@ a:hover{
     color: #52d396;
 }
 
+.none {
+    background-color: white;
+    border: 0;
+}
+
 .button {
     color: white;
     width: 160px;
@@ -112,6 +117,42 @@ a:hover{
 
 .summary {
     display: none;
+}
+
+/* пагинация */
+
+.pagination {
+    justify-content: center;
+}
+
+.pagination > li {
+    padding: 0 6px;
+    margin: 0 4px;
+}
+
+.pagination > .active {
+    border-bottom: 2px solid #48B585;
+    color: #48B585;
+}
+
+/* фильтрация */
+
+.filter {
+}
+
+.filter > form {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.filter > form > input {
+    width: 180px;
+    margin-right: 30px;
+}
+
+.filter > form > button {
+    margin-right: 10px;
 }
 
 /* админка пользователя */
@@ -503,20 +544,23 @@ header > div > a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1400px;
+    width: 75%;
     margin: 0 auto 60px;
 }
 
 .menu > div:first-of-type {
     display: flex;
-}
-
-.menu > div:first-of-type > a:first-of-type {
-    margin-right: 80px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .menu > div:first-of-type > a {
     margin-right: 20px;
+}
+
+.menu > div:first-of-type > p {
+    margin: 0 20px 0 0;
+    font-size: 20px;
 }
 
 .notes-list {

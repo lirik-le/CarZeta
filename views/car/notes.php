@@ -10,9 +10,7 @@ $this->title = 'Записи';
 <div class="notes">
     <div class="menu">
         <div>
-            <a href="">
-                <button class="button green">Добавит</button>
-            </a>
+            <p>Добавить:</p>
             <a href="<?= Url::to(['incomes/create', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]) ?>">
                 <button class="button green">Доход</button>
             </a>
@@ -26,10 +24,14 @@ $this->title = 'Записи';
                 <button class="button yellow">Заправка</button>
             </a>
         </div>
+        <?= $this->render('_filter', ['car_id' => Yii::$app->request->getQueryParams()['car_id']]) ?>
     </div>
 
     <div class="notes-list">
-        <?php foreach ($notes as $note): ?>
+        <?php
+        if (!empty($notes)):
+        foreach ($notes as $note):
+            ?>
             <div class="note">
                 <div>
                     <img class="note-img" src="<?= Yii::$app->homeUrl ?>/web/img/<?php
@@ -101,8 +103,18 @@ $this->title = 'Записи';
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>
-        <div class="paginations">
+        <?php
+        endforeach;
+        else:
+        ?>
+        <div>
+            <p>Нет записей</p>
+        </div>
+        <?php
+        endif;
+        ?>
+
+        <div class="pages">
             <?= LinkPager::widget([
                 'pagination' => $pages,
             ]); ?>
