@@ -11,6 +11,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 use yii\data\Pagination;
+use yii\data\Sort;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -96,18 +97,63 @@ class CarController extends Controller
     {
         $car = Car::findOne(Yii::$app->request->getQueryParam('car_id'));
 
-        $expenditures = Expenditures::findAll(['car_id' => $car->id]);
-        $incomes = Incomes::findAll(['car_id' => $car->id]);
-        $refills = Refills::findAll(['car_id' => $car->id]);
-        $services = Services::findAll(['car_id' => $car->id]);
+        switch (Yii::$app->request->getQueryParam('category')) {
+            case 'refills':
+                if (Yii::$app->request->getQueryParam('date'))
+                    $refills = Refills::findAll(['car_id' => $car->id, 'date' => Yii::$app->request->getQueryParam('date')]);
+                else
+                    $refills = Refills::findAll(['car_id' => $car->id]);
+                $notes = $refills;
+                break;
+            case 'incomes':
+                if (Yii::$app->request->getQueryParam('date'))
+                    $incomes = Incomes::findAll(['car_id' => $car->id, 'date' => Yii::$app->request->getQueryParam('date')]);
+                else
+                    $incomes = Incomes::findAll(['car_id' => $car->id]);
+                $notes = $incomes;
+                break;
+            case 'expenditures':
+                if (Yii::$app->request->getQueryParam('date'))
+                    $expenditures = Expenditures::findAll(['car_id' => $car->id, 'date' => Yii::$app->request->getQueryParam('date')]);
+                else
+                    $expenditures = Expenditures::findAll(['car_id' => $car->id]);
+                $notes = $expenditures;
+                break;
+            case 'services':
+                if (Yii::$app->request->getQueryParam('date'))
+                    $services = Services::findAll(['car_id' => $car->id, 'date' => Yii::$app->request->getQueryParam('date')]);
+                else
+                    $services = Services::findAll(['car_id' => $car->id]);
+                $notes = $services;
+                break;
+            default:
+                if (Yii::$app->request->getQueryParam('date')) {
+                    $refills = Refills::findAll(['car_id' => $car->id, 'date' => Yii::$app->request->getQueryParam('date')]);
+                    $incomes = Incomes::findAll(['car_id' => $car->id, 'date' => Yii::$app->request->getQueryParam('date')]);
+                    $expenditures = Expenditures::findAll(['car_id' => $car->id, 'date' => Yii::$app->request->getQueryParam('date')]);
+                    $services = Services::findAll(['car_id' => $car->id, 'date' => Yii::$app->request->getQueryParam('date')]);
+                }
+                else {
+                    $refills = Refills::findAll(['car_id' => $car->id]);
+                    $incomes = Incomes::findAll(['car_id' => $car->id]);
+                    $expenditures = Expenditures::findAll(['car_id' => $car->id]);
+                    $services = Services::findAll(['car_id' => $car->id]);
+                }
+                $notes = array_merge($expenditures, $incomes, $refills, $services);
+        }
 
-
-        $notes = array_merge($expenditures, $incomes, $refills, $services);
         ArrayHelper::multisort($notes, ['date'], [SORT_DESC]);
 
         $pagination = new Pagination([
             'totalCount' => count($notes),
             'pageSize' => 10,
+        ]);
+
+        $sort = new Sort([
+            'attributes' => [
+                'date' => ['label' => 'Дата'],
+                'amount' => ['label' => 'Цена']
+            ],
         ]);
 
         $dataProvider = new ArrayDataProvider([
@@ -120,10 +166,12 @@ class CarController extends Controller
             ],
         ]);
 
+        $dataProvider->setSort($sort);
+
         $notes = $dataProvider->getModels();
         $pages = $dataProvider->getPagination();
 
-        return $this->render('notes', ['notes' => $notes, 'pages' => $pages]);
+        return $this->render('notes', ['notes' => $notes, 'pages' => $pages, 'sort' => $sort]);
     }
 
     /**

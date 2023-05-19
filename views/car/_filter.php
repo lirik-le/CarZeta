@@ -22,7 +22,14 @@ else
     ?>
 
     <?= Html::input('hidden', 'car_id', "$car_id", ['class' => 'input-form']) ?>
-    <?= Html::input('date', 'category', "$date", ['class' => 'input-form']) ?>
+
+    <?= Html::dropDownList('category', '', [
+        'refills' => 'Заправки',
+        'incomes' => 'Доходы',
+        'expenditures' => 'Расходы',
+        'services' => 'Сервисы',
+    ], ['class' => 'input-form', 'prompt' => 'Все категории', 'style' => 'width: 180px']) ?>
+
     <?= Html::input('date', 'date', "$date", ['class' => 'input-form']) ?>
 
     <button class="none">
