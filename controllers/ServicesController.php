@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Car;
 use app\models\Services;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -36,9 +37,19 @@ class ServicesController extends Controller
                             }
                         ],
                         [
-                            'actions' => ['create', 'update', 'delete'],
+                            'actions' => ['create', 'delete'],
                             'allow' => true,
                             'roles' => ['@']
+                        ],
+                        [
+                            'actions' => ['update'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function () {
+                                $user_id = Car::findOne(['id' => Yii::$app->request->getQueryParam('car_id')])->user_id;
+                                if ($user_id == Yii::$app->user->identity->id || Yii::$app->user->identity->role)
+                                    return true;
+                            }
                         ],
                     ],
                     'denyCallback' => function () {

@@ -45,9 +45,28 @@ class CarController extends Controller
                             }
                         ],
                         [
-                            'actions' => ['create', 'update', 'delete', 'notes'],
+                            'actions' => ['create', 'delete'],
                             'allow' => true,
                             'roles' => ['@']
+                        ],
+                        [
+                            'actions' => ['update'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function () {
+                                if ((Yii::$app->request->getQueryParam('id') == Yii::$app->user->identity->id) || Yii::$app->user->identity->role)
+                                    return true;
+                            }
+                        ],
+                        [
+                            'actions' => ['notes'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function () {
+                                $user_id = Car::findOne(['id' => Yii::$app->request->getQueryParam('car_id')])->user_id;
+                                if ($user_id == Yii::$app->user->identity->id)
+                                    return true;
+                            }
                         ],
                     ],
                     'denyCallback' => function () {

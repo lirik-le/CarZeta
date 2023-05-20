@@ -433,7 +433,7 @@ header > div > a {
 }
 
 .users {
-    width: 40%;
+    width: 42%;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -441,6 +441,7 @@ header > div > a {
 }
 
 .users > div {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -457,13 +458,30 @@ header > div > a {
     border-radius: 10px;
 }
 
-.users > div > img {
+.avatar {
+    position: relative;
     margin-right: 40px;
+}
+
+.avatar > img {
     border-radius: 10px;
+}
+
+.gear {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #38353B;
+    border-radius: 50%;
+    padding: 3px;
 }
 
 .users > div > div > p {
     margin-left: 20px;
+}
+
+.users > div > div:last-of-type > a:first-of-type {
+    margin-right: 10px;
 }
 
 .cars {
@@ -654,7 +672,7 @@ header > div > a {
     width: 15px;
     height: 15px;
 
-    background-image: url("http://localhost/CarZeta/web/img/arrow.png");
+    background-image: url("../../web/img/arrow.png");
     background-size: cover;
 }
 
@@ -672,7 +690,7 @@ header > div > a {
     width: 15px;
     height: 15px;
 
-    background-image: url("http://localhost/CarZeta/web/img/arrow.png");
+    background-image: url("../../web/img/arrow.png");
     background-size: cover;
     transform: rotate(180deg);
 }
