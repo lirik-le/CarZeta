@@ -47,12 +47,12 @@ class Services extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'type_of_services' => 'Type Of services',
-            'amount' => 'Amount',
-            'date' => 'Date',
-            'description' => 'Description',
-            'car_id' => 'Car ID',
+            'id' => 'id',
+            'type_of_services' => 'Название',
+            'amount' => 'Цена',
+            'date' => 'Дата',
+            'description' => 'Описание',
+            'car_id' => 'Номер машины',
         ];
     }
 

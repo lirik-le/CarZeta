@@ -48,11 +48,11 @@ class Incomes extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type_of_incomes' => 'Type Of incomes',
-            'amount' => 'Amount',
-            'date' => 'Date',
-            'description' => 'Description',
-            'car_id' => 'Car ID',
+            'type_of_incomes' => 'Название',
+            'amount' => 'Цена',
+            'date' => 'Дата',
+            'description' => 'Описание',
+            'car_id' => 'Номер машины',
         ];
     }
 

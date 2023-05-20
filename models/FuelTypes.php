@@ -39,8 +39,8 @@ class FuelTypes extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'fuel' => 'Fuel',
+            'id' => 'id',
+            'fuel' => 'Бензин',
         ];
     }
 

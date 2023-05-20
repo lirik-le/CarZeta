@@ -11,6 +11,11 @@ if (isset(Yii::$app->request->getQueryParams()['date']))
     $date = Yii::$app->request->getQueryParams()['date'];
 else
     $date = date('Y-m-d');
+
+if (isset(Yii::$app->request->getQueryParams()['category']))
+    $category = Yii::$app->request->getQueryParams()['category'];
+else
+    $category = 0;
 ?>
 
 <div class="filter">
@@ -23,7 +28,7 @@ else
 
     <?= Html::input('hidden', 'car_id', "$car_id", ['class' => 'input-form']) ?>
 
-    <?= Html::dropDownList('category', '', [
+    <?= Html::dropDownList('category', "$category", [
         'refills' => 'Заправки',
         'incomes' => 'Доходы',
         'expenditures' => 'Расходы',

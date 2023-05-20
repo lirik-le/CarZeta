@@ -135,26 +135,6 @@ a:hover{
     color: #48B585;
 }
 
-/* фильтрация */
-
-.filter {
-}
-
-.filter > form {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-}
-
-.filter > form > input, select {
-    width: 180px;
-    margin-right: 30px;
-}
-
-.filter > form > button {
-    margin-right: 10px;
-}
-
 /* админка пользователя */
 
 .user-index, .user-view {
@@ -540,26 +520,44 @@ header > div > a {
     padding: 60px 0;
 }
 
-.menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.notes > div:first-of-type {
     width: 75%;
     margin: 0 auto 60px;
 }
 
-.menu > div:first-of-type {
+.menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.menu > div:first-of-type > a {
-    margin-right: 20px;
+.menu > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.menu > div:first-of-type > p {
-    margin: 0 20px 0 0;
+.sorts {
+    display: block;
+    text-align: center;
+    border-bottom: 2px solid white;
+    width: 46px;
+    position: relative;
+    right: 17px;
+    margin: 0 12px;
+    padding: 0 3px;
+}
+
+.notes-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    margin-bottom: 30px;
+}
+
+.notes-button > p {
+    margin: 0;
     font-size: 20px;
 }
 
@@ -621,4 +619,60 @@ header > div > a {
 
 .fuel {
     margin-right: 20px;
+}
+
+/* фильтрация */
+
+.filter > form {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.filter > form > input, select {
+    width: 180px;
+    margin-right: 30px;
+}
+
+.filter > form > button {
+    margin-right: 15px;
+}
+
+/* сортировка */
+
+.asc {
+    border-bottom: 2px solid #48B585;
+}
+
+.asc::after {
+    content: "";
+
+    position: absolute;
+    top: 5px;
+    left: 48px;
+
+    width: 15px;
+    height: 15px;
+
+    background-image: url("http://localhost/CarZeta/web/img/arrow.png");
+    background-size: cover;
+}
+
+.desc {
+    border-bottom: 2px solid #48B585;
+}
+
+.desc::after {
+    content: "";
+
+    position: absolute;
+    top: 7px;
+    left: 48px;
+
+    width: 15px;
+    height: 15px;
+
+    background-image: url("http://localhost/CarZeta/web/img/arrow.png");
+    background-size: cover;
+    transform: rotate(180deg);
 }

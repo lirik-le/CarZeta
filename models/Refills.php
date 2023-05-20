@@ -47,12 +47,12 @@ class Refills extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'amount' => 'Amount',
-            'id_fuel' => 'Id Fuel',
-            'liters' => 'Liters',
-            'date' => 'Date',
-            'car_id' => 'Car ID',
+            'id' => 'id',
+            'amount' => 'Цена',
+            'id_fuel' => 'Тип бензина',
+            'liters' => 'Литры',
+            'date' => 'Дата',
+            'car_id' => 'Номер машины',
         ];
     }
 
