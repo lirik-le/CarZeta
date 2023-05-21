@@ -23,8 +23,9 @@ $this->title = 'Регистрация';
         ],
     ]); ?>
 
-    <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль']) ?>
-    <?= $form->field($model, 'repeat_password')->passwordInput(['placeholder' => 'Повтор пароля']) ?>
+    <?= $form->field($model, 'old_password')->passwordInput(['placeholder' => 'Старый пароль']) ?>
+    <?= $form->field($model, 'new_password')->passwordInput(['placeholder' => 'Новый пароль']) ?>
+    <?= $form->field($model, 'confirm_password')->passwordInput(['placeholder' => 'Повтор пароля']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Изменить', ['class' => 'button green', 'style' => 'width: 280px']) ?>

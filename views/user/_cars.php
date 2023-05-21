@@ -13,7 +13,13 @@ use yii\helpers\Url;
 
 <?php foreach ($cars as $car): ?>
     <div class="car">
-        <img src="<?= $car->photo ?>" alt="Фотография" width="300px" height="225px">
+        <div class="avatar">
+            <a href="<?= Url::to(['car/photo', 'id' => $car->id]) ?>">
+                <img class="gear" src="<?= Yii::$app->homeUrl ?>web/img/gear.png" alt="Сменить" width="33" height="33">
+            </a>
+            <img src="<?= $car->photo ?>" alt="Фотография" width="384" height="216">
+        </div>
+
         <div>
             <h2><?= $car->name ?></h2>
             <p><?= $car->brand ?> <?= $car->model ?></p>

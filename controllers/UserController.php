@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\ChangePasswordForm;
 use app\models\User;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -121,16 +122,9 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing User model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionAvatar($id)
+    public function actionChangeAvatar()
     {
-        $model = $this->findModel($id);
+        $model = Yii::$app->user->identity;
 
         $model->file = UploadedFile::getInstance($model, 'file');
         $model->avatar = $model->upload();
@@ -138,33 +132,23 @@ class UserController extends Controller
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false))
             return $this->redirect(['profile', 'id' => $model->id]);
 
-        return $this->render('avatar', [
+        return $this->render('change-avatar', [
             'model' => $model,
         ]);
     }
 
-    public function actionPassword($id)
+    public function actionChangePassword()
     {
-        $model = $this->findModel($id);
-        $model->password = '';
+        $model = new ChangePasswordForm();
 
-        if ($model->load(Yii::$app->request->post())){
-            var_dump($model->validate());
-            if ($model->validate()) {
-                $model->save();
-                return $this->redirect(['profile', 'id' => $model->id]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $user = Yii::$app->user->identity;
+            $user->password = Yii::$app->security->generatePasswordHash($model->new_password);
+            $user->save(false);
+            return $this->redirect(['user/profile']);
         }
 
-        if ($model->load(Yii::$app->request->post())){
-            if ($this->request->isPost && $model->validate()){
-                $model->password = md5($model->password);
-                $model->save();
-                return $this->redirect(['profile', 'id' => $model->id]);
-            }
-        }
-
-        return $this->render('password', [
+        return $this->render('change-password', [
             'model' => $model,
         ]);
     }

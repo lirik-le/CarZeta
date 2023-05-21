@@ -465,6 +465,7 @@ header > div > a {
 
 .avatar > img {
     border-radius: 10px;
+    object-fit: cover;
 }
 
 .gear {

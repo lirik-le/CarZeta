@@ -54,7 +54,8 @@ class CarController extends Controller
                             'allow' => true,
                             'roles' => ['@'],
                             'matchCallback' => function () {
-                                if ((Yii::$app->request->getQueryParam('id') == Yii::$app->user->identity->id) || Yii::$app->user->identity->role)
+                                $user_id = Car::findOne(['id' => Yii::$app->request->getQueryParam('id')])->user_id;
+                                if (($user_id == Yii::$app->user->identity->id) || Yii::$app->user->identity->role)
                                     return true;
                             }
                         ],
@@ -242,6 +243,21 @@ class CarController extends Controller
         }
 
         return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionPhoto($id)
+    {
+        $model = $this->findModel($id);
+
+        $model->file = UploadedFile::getInstance($model, 'file');
+        $model->photo = $model->upload();
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false))
+            return $this->redirect(['user/profile']);
+
+        return $this->render('photo', [
             'model' => $model,
         ]);
     }

@@ -10,7 +10,7 @@ $this->title = $user->username;
         <div>
             <div class="avatar">
                 <img src="<?= $user->avatar ?>" alt="Аватарка" width="250px" height="250px">
-                <a href="<?= Url::to(['user/avatar', 'id' => $user->id]) ?>">
+                <a href="<?= Url::to(['user/change-avatar']) ?>">
                     <img class="gear" src="<?= Yii::$app->homeUrl ?>web/img/gear.png" alt="Сменить" width="33" height="33">
                 </a>
             </div>
@@ -22,7 +22,7 @@ $this->title = $user->username;
                 <a href="<?= Url::to(['user/update', 'id' => $user->id]) ?>">
                     <button class="button green">Изменить</button>
                 </a>
-                <a href="<?= Url::to(['user/password', 'id' => $user->id]) ?>">
+                <a href="<?= Url::to(['user/change-password']) ?>">
                     <button class="button gray">Смена пароля</button>
                 </a>
             </div>

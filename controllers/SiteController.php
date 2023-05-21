@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use http\Url;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -88,7 +87,7 @@ class SiteController extends Controller
             if ($model->validate() && $uploadedFileName = $model->upload()) {
                 $model->avatar = $uploadedFileName;
                 // принудительная установка роли
-                $model->password = md5($model->password);
+                $model->password = Yii::$app->security->generatePasswordHash($model->password);
                 $model->save(false);
                 // перенаправление на главную
                 return $this->goHome();

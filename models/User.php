@@ -41,7 +41,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             [['lastname', 'firstname', 'username', 'password', 'number', 'email', 'file', 'role'], 'required'],
             [['role'], 'integer'],
-            [['lastname', 'firstname', 'username', 'password', 'number', 'email', 'avatar'], 'string', 'max' => 255],
+            [['lastname', 'firstname', 'username', 'number',], 'string', 'max' => 50],
+            [['number',], 'string', 'max' => 11],
+            [['password',], 'string', 'max' => 60],
+            [['email', 'avatar'], 'string', 'max' => 255],
         ];
     }
 
@@ -106,7 +109,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return Yii::$app->security->validatePassword($password, $this->password);
     }
 
     /**
