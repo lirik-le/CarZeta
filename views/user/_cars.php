@@ -25,7 +25,7 @@ use yii\helpers\Url;
             <p><?= $car->brand ?> <?= $car->model ?></p>
             <p><?= $car->number ?></p>
             <p><?= $car->year ?> год</p>
-            <p><?= $car->mileage ?></p>
+            <p><?= $car->mileage ?> км</p>
             <div>
                 <a href="<?= Url::to(['car/notes', 'car_id' => $car->id]) ?>">
                     <button class="button green">Записи</button>
@@ -33,8 +33,9 @@ use yii\helpers\Url;
                 <a href="<?= Url::to(['car/update', 'id' => $car->id]) ?>">
                     <button class="button gray">Изменить</button>
                 </a>
-                <a href="<?= Url::to(['car/delete', 'id' => $car->id]) ?>" data-method="post"><img
-                        src="<?= Yii::$app->homeUrl ?>/web/img/bin.png" alt="Удалить" width="30"></a>
+                <a href="<?= Url::to(['car/delete', 'id' => $car->id]) ?>" data-method="post">
+                    <img src="<?= Yii::$app->homeUrl ?>/web/img/bin.png" alt="Удалить" width="30">
+                </a>
             </div>
         </div>
     </div>

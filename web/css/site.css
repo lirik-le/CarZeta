@@ -703,3 +703,73 @@ header > div > a {
     background-size: cover;
     transform: rotate(180deg);
 }
+
+/* отчеты */
+
+.reports {
+    margin: 50px 100px;
+}
+
+.reports > div {
+    display: flex;
+    margin: 35px 20px 0 20px;
+}
+
+.reports-menu {
+    width: 23%;
+}
+
+.reports-link {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.reports-menu > div:last-of-type > a {
+    margin-bottom: 0;
+}
+
+.reports-link > img {
+    margin-right: 30px;
+}
+
+.reports-link > span {
+    transition: .15s linear;
+}
+
+.reports-stat:hover {
+    color: #38353B;
+}
+
+.reports-refill:hover {
+    color: #E1E35C;
+}
+
+.reports-income:hover {
+    color: #48B585;
+}
+
+.reports-expenditure:hover {
+    color: #CF5252;
+}
+
+.reports-service:hover {
+    color: #38353B;
+}
+
+.stat {
+    width: 77%;
+}
+
+.stat > div:first-of-type > a {
+    margin: 0 10px;
+}
+
+.stat > div:last-of-type {
+    margin: 30px 0 0 30px;
+}
+
+.stat-inner {
+    margin-top: 30px;
+}
