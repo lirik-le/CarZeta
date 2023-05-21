@@ -33,10 +33,14 @@ class Incomes extends \yii\db\ActiveRecord
     {
         return [
             [['type_of_incomes', 'amount', 'date', 'car_id'], 'required'],
-            [['amount', 'car_id'], 'integer'],
+            [['car_id'], 'integer'],
+            [['amount'], 'string', 'max' => 6],
+            [['amount'], 'compare', 'operator' => '>=', 'compareValue' => 0],
             [['date'], 'safe'],
-            [['description'], 'string'],
-            [['type_of_incomes'], 'string', 'max' => 255],
+            [['date'], 'compare', 'operator' => '<=', 'compareValue' => date('Y-m-d')],
+            [['date'], 'compare', 'operator' => '>=', 'compareValue' => '2020-01-01'],
+            [['type_of_incomes'], 'string', 'max' => 40],
+            [['description'], 'string', 'max' => 40],
             [['car_id'], 'exist', 'skipOnError' => true, 'targetClass' => Car::class, 'targetAttribute' => ['car_id' => 'id']],
         ];
     }

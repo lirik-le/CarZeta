@@ -16,7 +16,13 @@ class ChangePasswordForm extends Model
         return [
             [['old_password', 'new_password', 'confirm_password'], 'required'],
             ['old_password', 'validateOldPassword'],
+            [['new_password', 'confirm_password'], 'string', 'max' => 60],
+            [
+                ['new_password'],'match',
+                'pattern'=> '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/'
+            ],
             ['confirm_password', 'compare', 'compareAttribute' => 'new_password'],
+
         ];
     }
 

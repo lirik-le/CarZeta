@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'type_of_incomes')->textInput(['placeholder' => 'Название', 'maxlength' => true]) ?>
-    <?= $form->field($model, 'amount')->textInput(['placeholder' => 'Сумма']) ?>
+    <?= $form->field($model, 'amount')->textInput(['type' => 'number','placeholder' => 'Сумма']) ?>
     <?= $form->field($model, 'date')->input('date') ?>
     <?= $form->field($model, 'description')->textarea(['placeholder' => 'Описание', 'rows' => 1]) ?>
     <?= $form->field($model, 'car_id')->input('hidden') ?>

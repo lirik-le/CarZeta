@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder'=>'Имя']) ?>
     <?= $form->field($model, 'brand')->textInput(['maxlength' => true, 'placeholder'=>'Марка']) ?>
     <?= $form->field($model, 'model')->textInput(['maxlength' => true, 'placeholder'=>'Модель']) ?>
-    <?= $form->field($model, 'number')->textInput(['maxlength' => true, 'placeholder'=>'Номер - А001АА01']) ?>
+    <?= $form->field($model, 'number')->textInput(['maxlength' => true, 'placeholder'=>'А001АА01']) ?>
     <?= $form->field($model, 'year')->textInput(['type' => 'number', 'maxlength' => true, 'placeholder'=>'Год']) ?>
     <?= $form->field($model, 'mileage')->textInput(['type' => 'number','maxlength' => true, 'placeholder'=>'Пробег']) ?>
 

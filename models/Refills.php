@@ -34,8 +34,15 @@ class Refills extends \yii\db\ActiveRecord
     {
         return [
             [['amount', 'id_fuel', 'liters', 'date', 'car_id'], 'required'],
-            [['amount', 'id_fuel', 'liters', 'car_id'], 'integer'],
+            [['id_fuel', 'car_id'], 'integer'],
+            [['amount'], 'string', 'max' => 6],
+            [['amount'], 'compare', 'operator' => '>=', 'compareValue' => 0],
+            [['liters'], 'string', 'max' => 3],
+            [['liters'], 'compare', 'operator' => '>=', 'compareValue' => 0],
             [['date'], 'safe'],
+            [['date'], 'compare', 'operator' => '<=', 'compareValue' => date('Y-m-d')],
+            [['date'], 'compare', 'operator' => '>=', 'compareValue' => '2020-01-01'],
+            [['description'], 'string', 'max' => 40],
             [['id_fuel'], 'exist', 'skipOnError' => true, 'targetClass' => FuelTypes::class, 'targetAttribute' => ['id_fuel' => 'id']],
             [['car_id'], 'exist', 'skipOnError' => true, 'targetClass' => Car::class, 'targetAttribute' => ['car_id' => 'id']],
         ];

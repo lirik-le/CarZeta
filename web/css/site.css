@@ -388,6 +388,10 @@ header > div > a {
     padding-bottom: 5px;
 }
 
+#car-number {
+    text-transform: uppercase;
+}
+
 /* регистрация */
 
 #form > div{
@@ -516,6 +520,10 @@ header > div > a {
 
 .car > div > p {
     margin-left: 20px;
+}
+
+.car > div > p:nth-of-type(2) {
+    text-transform: uppercase;
 }
 
 .car > div > div > a {

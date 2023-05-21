@@ -45,6 +45,26 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['number',], 'string', 'max' => 11],
             [['password',], 'string', 'max' => 60],
             [['email', 'avatar'], 'string', 'max' => 255],
+            [['email'], 'email'],
+            [['username', 'email', 'number'], 'unique'],
+            [
+                ['username'],'match',
+                'pattern'=> '/^[a-zA-Z \W \d]+$/u'
+            ],
+            [
+                ['password'],'match',
+                'pattern'=> '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/'
+            ],
+            [
+                ['lastname', 'firstname'],'match',
+                'pattern'=> '/^[а-яА-Я]+$/u'
+            ],
+            [['repeat_password'], 'compare', 'compareAttribute' => 'password'],
+            [
+                ['file'], 'file',
+                'skipOnEmpty' => false,
+                'extensions' => 'jpg, png, jpeg, bmp', 'maxSize' => 1024 * 1024 * 15
+            ]
         ];
     }
 

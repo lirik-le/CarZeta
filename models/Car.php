@@ -43,7 +43,29 @@ class Car extends \yii\db\ActiveRecord
             [['name', 'brand', 'model', 'file', 'user_id'], 'required'],
             [['year'], 'safe'],
             [['user_id'], 'integer'],
-            [['name', 'brand', 'model', 'number', 'photo', 'mileage'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 50],
+            [['brand', 'model'], 'string', 'max' => 15],
+            [['number'], 'string', 'max' => 9],
+            [['year'], 'string', 'max' => 4],
+            [['year'], 'compare', 'operator' => '<=', 'compareValue' => date('Y')],
+            [['year'], 'compare', 'operator' => '>=', 'compareValue' => 1900],
+            [['mileage'], 'compare', 'operator' => '>=', 'compareValue' => 0],
+            [['mileage'], 'string', 'max' => 6],
+            [['photo'], 'string', 'max' => 255],
+            [['number'], 'unique'],
+            [
+                ['brand'],'match',
+                'pattern'=> '/^[^0-9]*$/'
+            ],
+            [
+                ['number'],'match',
+                'pattern'=> '/^[авекмнорстухАВЕКМНОРСТУХ]{1}\d{3}[авекмнорстухАВЕКМНОРСТУХ]{2}\d{2,3}$/u'
+            ],
+            [
+                ['file'], 'file',
+                'skipOnEmpty' => false,
+                'extensions' => 'jpg, png, jpeg, bmp', 'maxSize' => 1024 * 1024 * 15
+            ],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }

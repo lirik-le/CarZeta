@@ -90,7 +90,7 @@ class SiteController extends Controller
                 $model->password = Yii::$app->security->generatePasswordHash($model->password);
                 $model->save(false);
                 // перенаправление на главную
-                return $this->goHome();
+                return $this->redirect('login');
             }
         }
 
