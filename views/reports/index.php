@@ -9,31 +9,31 @@ use yii\helpers\Url;
     <div>
         <div class="reports-menu">
             <div>
-                <a class="reports-link" href="<?= Url::to('reports') ?>">
+                <a class="reports-link" href="<?= Url::to("?car_id=$car_id") ?>">
                     <img src="<?= Yii::$app->homeUrl ?>/web/img/stat.png" alt="" width="50" height="50">
                     <span class="reports-stat">Полная статистика</span>
                 </a>
             </div>
             <div>
-                <a class="reports-link" href="<?= Url::to('refill') ?>">
+                <a class="reports-link" href="<?= Url::to("?car_id=$car_id&category=gas") ?>">
                     <img src="<?= Yii::$app->homeUrl ?>/web/img/report-refill.png" alt="" width="50" height="50">
                     <span class="reports-refill">Заправки</span>
                 </a>
             </div>
             <div>
-                <a class="reports-link" href="<?= Url::to('income') ?>">
+                <a class="reports-link" href="<?= Url::to("?car_id=$car_id&category=income") ?>">
                     <img src="<?= Yii::$app->homeUrl ?>/web/img/report-income.png" alt="" width="50" height="50">
                     <span class="reports-income">Доходы</span>
                 </a>
             </div>
             <div>
-                <a class="reports-link" href="<?= Url::to('expenditure') ?>">
+                <a class="reports-link" href="<?= Url::to("?car_id=$car_id&category=expenditure") ?>">
                     <img src="<?= Yii::$app->homeUrl ?>/web/img/report-expenditure.png" alt="" width="50" height="50">
                     <span class="reports-expenditure">Расходы</span>
                 </a>
             </div>
             <div>
-                <a class="reports-link" href="<?= Url::to('service') ?>">
+                <a class="reports-link" href="<?= Url::to("?car_id=$car_id&category=service") ?>">
                     <img src="<?= Yii::$app->homeUrl ?>/web/img/report-service.png" alt="" width="50" height="50">
                     <span class="reports-service">Сервисы</span>
                 </a>
@@ -49,7 +49,7 @@ use yii\helpers\Url;
             <div>
                 <h2>Всего</h2>
                 <div class="stat-inner">
-                    <h3>152333</h3>
+                    <h3><?= $sum ?></h3>
                     <span></span>
                 </div>
             </div>

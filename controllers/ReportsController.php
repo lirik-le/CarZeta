@@ -3,18 +3,22 @@
 namespace app\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use yii\web\UploadedFile;
-use yii\widgets\ActiveForm;
+use app\models\Reports;
+
 
 class ReportsController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = new Reports();
+        $car_id = Yii::$app->request->getQueryParam('car_id');
+        $category = Yii::$app->request->getQueryParam('category');
+        $sum = $model->getSum($category, $car_id);
+
+        return $this->render('index', [
+            'car_id' => $car_id,
+            'sum' => $sum,
+        ]);
     }
 }

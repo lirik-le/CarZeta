@@ -42,7 +42,6 @@ class Refills extends \yii\db\ActiveRecord
             [['date'], 'safe'],
             [['date'], 'compare', 'operator' => '<=', 'compareValue' => date('Y-m-d')],
             [['date'], 'compare', 'operator' => '>=', 'compareValue' => '2020-01-01'],
-            [['description'], 'string', 'max' => 40],
             [['id_fuel'], 'exist', 'skipOnError' => true, 'targetClass' => FuelTypes::class, 'targetAttribute' => ['id_fuel' => 'id']],
             [['car_id'], 'exist', 'skipOnError' => true, 'targetClass' => Car::class, 'targetAttribute' => ['car_id' => 'id']],
         ];
