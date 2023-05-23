@@ -235,9 +235,6 @@ class CarController extends Controller
             return $this->goHome();
         }
 
-        $model->file = UploadedFile::getInstance($model, 'file');
-        $model->photo = $model->upload();
-
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false)) {
             return $this->redirect(['user/profile']);
         }
@@ -257,7 +254,7 @@ class CarController extends Controller
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false))
             return $this->redirect(['user/profile']);
 
-        return $this->render('photo', [
+        return $this->render('changePhoto', [
             'model' => $model,
         ]);
     }

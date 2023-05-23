@@ -73,24 +73,19 @@ class SiteController extends Controller
     {
         $model = new \app\models\User();
         $model->role = 0;
-        // ajax проверка
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
 
         if ($model->load(Yii::$app->request->post())) {
-            // Загружаем файл в переменную до валидации
             $model->file = UploadedFile::getInstance($model, 'file');
 
-            // если валидация прошла успешно и файл был загружен
             if ($model->validate() && $uploadedFileName = $model->upload()) {
                 $model->avatar = $uploadedFileName;
-                // принудительная установка роли
                 $model->password = Yii::$app->security->generatePasswordHash($model->password);
                 $model->save(false);
-                // перенаправление на главную
-                return $this->redirect('login');
+                return $this->redirect('../login');
             }
         }
 

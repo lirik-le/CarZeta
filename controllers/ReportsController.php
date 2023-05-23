@@ -15,10 +15,10 @@ class ReportsController extends Controller
         $car_id = Yii::$app->request->getQueryParam('car_id');
         $category = Yii::$app->request->getQueryParam('category');
         $sum = $model->getSum($category, $car_id);
-
         return $this->render('index', [
             'car_id' => $car_id,
             'sum' => $sum,
+            'category' => $category,
         ]);
     }
 }

@@ -132,7 +132,7 @@ class UserController extends Controller
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false))
             return $this->redirect(['profile', 'id' => $model->id]);
 
-        return $this->render('change-avatar', [
+        return $this->render('changeAvatar', [
             'model' => $model,
         ]);
     }
@@ -148,7 +148,7 @@ class UserController extends Controller
             return $this->redirect(['user/profile']);
         }
 
-        return $this->render('change-password', [
+        return $this->render('changePassword', [
             'model' => $model,
         ]);
     }

@@ -19,6 +19,9 @@ use Yii;
  */
 class Refills extends \yii\db\ActiveRecord
 {
+
+    public $array;
+
     /**
      * {@inheritdoc}
      */
@@ -61,6 +64,8 @@ class Refills extends \yii\db\ActiveRecord
             'car_id' => 'Номер машины',
         ];
     }
+
+
 
     /**
      * Gets query for [[Car]].
