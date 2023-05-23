@@ -8,9 +8,25 @@ use yii\db\Query;
 
 class Reports extends Model
 {
-    public function getSum($category, $car_id)
+    public function getliters($car_id, $date)
     {
-        $date = Yii::$app->request->getQueryParam('date');
+        if ($date !== NULL) {
+            $date = date('Y-m-d', strtotime($date, strtotime(date('Y-m-d'))));
+            $liters = Refills::find()
+                ->where(['car_id' => $car_id])
+                ->andWhere(['>=', 'date', $date])
+                ->sum('liters');
+        } else {
+            $liters = Refills::find()
+                ->where(['car_id' => $car_id])
+                ->sum('liters');
+
+        }
+        return $liters ?: 0;
+    }
+
+    public function getSum($category, $car_id, $date)
+    {
         switch ($category) {
             case 'refills':
                 if ($date !== NULL) {
@@ -91,15 +107,13 @@ class Reports extends Model
                     $incomes = Incomes::find()
                         ->where(['car_id' => $car_id])
                         ->sum('amount');
-                    $expenditures = Expenditures::find()
-                        ->where(['car_id' => $car_id])
-                        ->sum('amount');
+                    $expenditures = Expenditures::find()->where(['car_id' => $car_id])->sum('amount');
                     $services = Services::find()
                         ->where(['car_id' => $car_id])
                         ->sum('amount');
                     $sum = $refills + $incomes + $expenditures + $services;
                 }
         }
-        return $sum ? : 0;
+        return $sum ?: 0;
     }
 }

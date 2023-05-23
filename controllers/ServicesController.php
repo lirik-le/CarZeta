@@ -107,10 +107,7 @@ class ServicesController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                if (Yii::$app->user->identity->role)
-                    return $this->redirect(['view', 'id' => $model->id]);
-                else
-                    return $this->redirect(['car/notes', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]);
+                return $this->redirect(['car/notes', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]);
             }
         } else {
             $model->loadDefaultValues();

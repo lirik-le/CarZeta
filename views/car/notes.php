@@ -9,21 +9,27 @@ $this->title = 'Записи';
 
 <div class="notes">
     <div>
-        <div class="notes-button">
-            <p>Добавить:</p>
-            <a href="<?= Url::to(['incomes/create', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]) ?>">
-                <button class="button green">Доход</button>
-            </a>
-            <a href="<?= Url::to(['expenditures/create', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]) ?>">
-                <button class="button red">Расход</button>
-            </a>
-            <a href="<?= Url::to(['services/create', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]) ?>">
-                <button class="button gray">Сервис</button>
-            </a>
-            <a href="<?= Url::to(['refills/create', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]) ?>">
-                <button class="button yellow">Заправка</button>
+        <div>
+            <div class="notes-button">
+                <p>Добавить:</p>
+                <a href="<?= Url::to(['incomes/create', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]) ?>">
+                    <button class="button green">Доход</button>
+                </a>
+                <a href="<?= Url::to(['expenditures/create', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]) ?>">
+                    <button class="button red">Расход</button>
+                </a>
+                <a href="<?= Url::to(['services/create', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]) ?>">
+                    <button class="button gray">Сервис</button>
+                </a>
+                <a href="<?= Url::to(['refills/create', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]) ?>">
+                    <button class="button yellow">Заправка</button>
+                </a>
+            </div>
+            <a href="<?= Url::to(['/reports', 'car_id' => Yii::$app->request->getQueryParams()['car_id']]) ?>">
+                <button class="button green">Статистика</button>
             </a>
         </div>
+
         <div class="menu">
             <div>
                 <?= $sort->link('date', ['class' => 'sorts']); ?> <?= $sort->link('amount', ['class' => 'sorts']); ?>

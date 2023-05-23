@@ -51,6 +51,7 @@ use yii\helpers\Url;
                 case 'refills':
                     echo $this->render('_refills', [
                         'sum' => $sum,
+                        'liters' => $liters,
                     ]);
                     break;
                 case 'incomes':
@@ -71,10 +72,9 @@ use yii\helpers\Url;
                 default:
                     ?>
                     <div>
-                        <h2>Всего</h2>
+                        <h2 class="allH1">Всего</h2>
                         <div class="stat-inner">
-                            <h3><?= $sum ?></h3>
-                            <span></span>
+                            <h3><?= $sum ?> рублей</h3>
                         </div>
                     </div>
             <?php
