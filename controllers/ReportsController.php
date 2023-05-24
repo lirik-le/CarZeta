@@ -5,7 +5,6 @@ namespace app\controllers;
 use app\models\Car;
 use Yii;
 use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 use yii\web\Controller;
 use app\models\Reports;
 
@@ -42,23 +41,28 @@ class ReportsController extends Controller
             ]
         );
     }
+
     public function actionIndex()
     {
         $model = new Reports();
 
         $car_id = Yii::$app->request->getQueryParam('car_id');
         $category = Yii::$app->request->getQueryParam('category');
-        $date = Yii::$app->request->getQueryParam('date');
+        $date = Yii::$app->request->getQueryParam('date') ? : '0000-01-01';
 
         $sum = $model->getSum($category, $car_id, $date);
         $liters = $model->getliters($car_id, $date);
+        $min = $model->getMin($category, $car_id, $date);
+        $max = $model->getMax($category, $car_id, $date);
 
         return $this->render('index', [
             'car_id' => $car_id,
-            'sum' => $sum,
             'category' => $category,
             'date' => $date,
+            'sum' => $sum,
             'liters' => $liters,
+            'min' => $min,
+            'max' => $max,
         ]);
     }
 }

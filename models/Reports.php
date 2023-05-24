@@ -2,118 +2,103 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\db\Query;
 
-class Reports extends Model
+class Reports extends \yii\db\ActiveRecord
 {
-    public function getliters($car_id, $date)
+    public function getAllRecords($car_id, $date)
     {
-        if ($date !== NULL) {
-            $date = date('Y-m-d', strtotime($date, strtotime(date('Y-m-d'))));
-            $liters = Refills::find()
+        $refills = Refills::find()
+            ->where(['car_id' => $car_id])
+            ->andWhere(['>=', 'date', $date])
+            ->all();
+        $incomes = Incomes::find()
+            ->where(['car_id' => $car_id])
+            ->andWhere(['>=', 'date', $date])
+            ->all();
+        $expenditures = Expenditures::find()
+            ->where(['car_id' => $car_id])
+            ->andWhere(['>=', 'date', $date])
+            ->all();
+        $services = Services::find()
+            ->where(['car_id' => $car_id])
+            ->andWhere(['>=', 'date', $date])
+            ->all();
+
+        return array_merge($refills, $incomes, $expenditures, $services);
+    }
+
+    public function getLiters($car_id, $date)
+    {
+        $date = date('Y-m-d', strtotime($date, strtotime(date('Y-m-d'))));
+        $liters = Refills::find()
+            ->where(['car_id' => $car_id])
+            ->andWhere(['>=', 'date', $date])
+            ->sum('liters');
+
+        return $liters ?: 0;
+    }
+
+    public function getMax($category, $car_id, $date)
+    {
+        $date = date('Y-m-d', strtotime($date, strtotime(date('Y-m-d'))));
+        if (!empty($category)) {
+            $max = (new Query)->from($category)
                 ->where(['car_id' => $car_id])
                 ->andWhere(['>=', 'date', $date])
-                ->sum('liters');
+                ->orderBy(['amount' => SORT_DESC])
+                ->one();
         } else {
-            $liters = Refills::find()
-                ->where(['car_id' => $car_id])
-                ->sum('liters');
-
+            $records = $this->getAllRecords($car_id, $date);
+            $max = array_reduce($records, function($carry, $item) {
+                if ($carry === null || $item['amount'] > $carry['amount']) {
+                    return $item;
+                }
+                return $carry;
+            });
         }
-        return $liters ?: 0;
+
+        return $max ?: 0;
+    }
+
+    public function getMin($category, $car_id, $date)
+    {
+        $date = date('Y-m-d', strtotime($date, strtotime(date('Y-m-d'))));
+        if (!empty($category)) {
+            $min = (new Query)->from($category)
+                ->where(['car_id' => $car_id])
+                ->andWhere(['>=', 'date', $date])
+                ->orderBy(['amount' => SORT_ASC])
+                ->one();
+        } else {
+            $records = $this->getAllRecords($car_id, $date);
+            $min = array_reduce($records, function($carry, $item) {
+                if ($carry === null || $item['amount'] < $carry['amount']) {
+                    return $item;
+                }
+                return $carry;
+            });
+        }
+        return $min ?: 0;
     }
 
     public function getSum($category, $car_id, $date)
     {
-        switch ($category) {
-            case 'refills':
-                if ($date !== NULL) {
-                    $date = date('Y-m-d', strtotime($date, strtotime(date('Y-m-d'))));
-                    $sum = Refills::find()
-                        ->where(['car_id' => $car_id])
-                        ->andWhere(['>=', 'date', $date])
-                        ->sum('amount');
-                } else {
-                    $sum = Refills::find()
-                        ->where(['car_id' => $car_id])
-                        ->sum('amount');
-                }
-                break;
-            case 'incomes':
-                if ($date !== NULL) {
-                    $date = date('Y-m-d', strtotime($date, strtotime(date('Y-m-d'))));
-                    $sum = Incomes::find()
-                        ->where(['car_id' => $car_id])
-                        ->andWhere(['>=', 'date', $date])
-                        ->sum('amount');
-                } else {
-                    $sum = Incomes::find()
-                        ->where(['car_id' => $car_id])
-                        ->sum('amount');
-                }
-                break;
-            case 'expenditures':
-                if ($date !== NULL) {
-                    $date = date('Y-m-d', strtotime($date, strtotime(date('Y-m-d'))));
-                    $sum = Expenditures::find()
-                        ->where(['car_id' => $car_id])
-                        ->andWhere(['>=', 'date', $date])
-                        ->sum('amount');
-                } else {
-                    $sum = Expenditures::find()
-                        ->where(['car_id' => $car_id])
-                        ->sum('amount');
-                }
-                break;
-            case 'services':
-                if ($date !== NULL) {
-                    $date = date('Y-m-d', strtotime($date, strtotime(date('Y-m-d'))));
-                    $sum = Services::find()
-                        ->where(['car_id' => $car_id])
-                        ->andWhere(['>=', 'date', $date])
-                        ->sum('amount');
-                } else {
-                    $sum = Services::find()
-                        ->where(['car_id' => $car_id])
-                        ->sum('amount');
-                }
-                break;
-            default:
-                if ($date !== NULL) {
-                    $date = date('Y-m-d', strtotime($date, strtotime(date('Y-m-d'))));
-                    $refills = Refills::find()
-                        ->where(['car_id' => $car_id])
-                        ->andWhere(['>=', 'date', $date])
-                        ->sum('amount');
-                    $incomes = Incomes::find()
-                        ->where(['car_id' => $car_id])
-                        ->andWhere(['>=', 'date', $date])
-                        ->sum('amount');
-                    $expenditures = Expenditures::find()
-                        ->where(['car_id' => $car_id])
-                        ->andWhere(['>=', 'date', $date])
-                        ->sum('amount');
-                    $services = Services::find()
-                        ->where(['car_id' => $car_id])
-                        ->andWhere(['>=', 'date', $date])
-                        ->sum('amount');
-                    $sum = $refills + $incomes + $expenditures + $services;
-                } else {
-                    $refills = Refills::find()
-                        ->where(['car_id' => $car_id])
-                        ->sum('amount');
-                    $incomes = Incomes::find()
-                        ->where(['car_id' => $car_id])
-                        ->sum('amount');
-                    $expenditures = Expenditures::find()->where(['car_id' => $car_id])->sum('amount');
-                    $services = Services::find()
-                        ->where(['car_id' => $car_id])
-                        ->sum('amount');
-                    $sum = $refills + $incomes + $expenditures + $services;
-                }
+        $date = date('Y-m-d', strtotime($date, strtotime(date('Y-m-d'))));
+        if (!empty($category)) {
+            $sum = Reports::find()
+                ->from($category)
+                ->where(['car_id' => $car_id])
+                ->andWhere(['>=', 'date', $date])
+                ->sum('amount');
+        } else {
+            $records = $this->getAllRecords($car_id, $date);
+            $sum = array_reduce($records, function ($carry, $item) {
+                return $carry + $item['amount'];
+            });
         }
+
         return $sum ?: 0;
     }
 }

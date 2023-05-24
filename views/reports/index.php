@@ -44,7 +44,8 @@ use yii\helpers\Url;
                 <a href="<?= Url::to("?car_id=$car_id&category=$category&date=-1 months") ?>">За месяц</a> |
                 <a href="<?= Url::to("?car_id=$car_id&category=$category&date=-3 months") ?>">За 3 месяца</a> |
                 <a href="<?= Url::to("?car_id=$car_id&category=$category&date=-6 months") ?>">За 6 месяцев</a> |
-                <a href="<?= Url::to("?car_id=$car_id&category=$category&date=-12 months") ?>">За год</a>
+                <a href="<?= Url::to("?car_id=$car_id&category=$category&date=-12 months") ?>">За год</a> |
+                <a href="<?= Url::to("?car_id=$car_id&category=$category") ?>">За все время</a>
             </div>
             <?php
             switch ($category) {
@@ -52,21 +53,29 @@ use yii\helpers\Url;
                     echo $this->render('_refills', [
                         'sum' => $sum,
                         'liters' => $liters,
+                        'min' => $min,
+                        'max' => $max,
                     ]);
                     break;
                 case 'incomes':
                     echo $this->render('_incomes', [
                         'sum' => $sum,
+                        'min' => $min,
+                        'max' => $max,
                     ]);
                     break;
                 case 'expenditures':
                     echo $this->render('_expenditures', [
                         'sum' => $sum,
+                        'min' => $min,
+                        'max' => $max,
                     ]);
                     break;
                 case 'services':
                     echo $this->render('_services', [
                         'sum' => $sum,
+                        'min' => $min,
+                        'max' => $max,
                     ]);
                     break;
                 default:
@@ -74,10 +83,57 @@ use yii\helpers\Url;
                     <div>
                         <h2 class="allH1">Всего</h2>
                         <div class="stat-inner">
-                            <h3><?= $sum ?> рублей</h3>
+                            <div>
+                                <div>
+                                    <h2><?= $sum ?> рублей</h2>
+                                    <p>Всего</p>
+                                </div>
+                                <div>
+                                    <h2><?= $liters ?> литров</h2>
+                                    <p>Всего</p>
+                                </div>
+                            </div>
+                            <div>
+                                <?php if (!empty($min) || !empty($max)): ?>
+                                    <div>
+                                        <h2><?= $min['amount'] ?> рублей</h2>
+                                        <p>Наименьшая сумма</p>
+                                        <p>
+                                            <?php
+                                            if (isset($min['type_of_incomes']))
+                                                echo $min['type_of_incomes'];
+                                            elseif (isset($min['type_of_expenditures']))
+                                                echo $min['type_of_expenditures'];
+                                            elseif (isset($min['type_of_services']))
+                                                echo $min['type_of_services'];
+                                            else
+                                                echo $min['liters'];
+                                            ?>
+                                        </p>
+                                        <p><?= $min['date'] ?></p>
+                                    </div>
+                                    <div>
+                                        <h2><?= $max['amount'] ?> рублей</h2>
+                                        <p>Наибольшая сумма</p>
+                                        <p>
+                                            <?php
+                                            if (isset($max['type_of_incomes']))
+                                                echo $max['type_of_incomes'];
+                                            elseif (isset($max['type_of_expenditures']))
+                                                echo $max['type_of_expenditures'];
+                                            elseif (isset($max['type_of_services']))
+                                                echo $max['type_of_services'];
+                                            else
+                                                echo $max['liters'];
+                                            ?>
+                                        </p>
+                                        <p><?= $max['date'] ?></p>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
-            <?php
+                <?php
             }
             ?>
 

@@ -787,11 +787,24 @@ header > div > a {
     color: #E1E35C;
 }
 
+.refills > h3 {
+    margin-left: 20px;
+}
+
 .stat-inner {
     margin: 30px 150px 0 60px;
 }
 
-.stat-refills {
+.stat-inner > div {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 50px;
+}
+.stat-inner > div:last-of-type {
+    justify-content: space-around;
+}
+
+.stat-inner > div > div > p {
+    font-size: 20px;
+    margin: 0 0 0 20px;
 }
